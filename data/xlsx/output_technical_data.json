@@ -2122,8 +2122,7 @@
                                 }
                             ],
                             "valueType": "xs:date",
-                            "modelType": "Property",
-                            "value": "__MISSING__"
+                            "modelType": "Property"
                         }
                     ],
                     "modelType": "SubmodelElementCollection"

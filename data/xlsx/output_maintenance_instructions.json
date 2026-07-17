@@ -1558,8 +1558,7 @@
                                                 }
                                             ],
                                             "valueType": "xs:decimal",
-                                            "modelType": "Property",
-                                            "value": "__MISSING__"
+                                            "modelType": "Property"
                                         },
                                         {
                                             "category": "CONSTANT",
@@ -1591,8 +1590,7 @@
                                                 }
                                             ],
                                             "valueType": "xs:string",
-                                            "modelType": "Property",
-                                            "value": "__MISSING__"
+                                            "modelType": "Property"
                                         }
                                     ],
                                     "modelType": "SubmodelElementCollection"
@@ -1877,8 +1875,7 @@
                                                 }
                                             ],
                                             "contentType": "application/pdf",
-                                            "modelType": "File",
-                                            "value": ""
+                                            "modelType": "File"
                                         },
                                         {
                                             "category": "CONSTANT",

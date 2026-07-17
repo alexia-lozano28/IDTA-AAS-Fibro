@@ -861,8 +861,7 @@
                         }
                     ],
                     "contentType": "image/png",
-                    "modelType": "File",
-                    "value": ""
+                    "modelType": "File"
                 },
                 {
                     "idShort": "Markings",
@@ -1404,8 +1403,7 @@
                                 }
                             ],
                             "contentType": "application/pdf",
-                            "modelType": "File",
-                            "value": ""
+                            "modelType": "File"
                         },
                         {
                             "idShort": "GuidelineSpecificProperties",
