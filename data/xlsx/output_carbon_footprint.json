@@ -94,6 +94,16 @@
                             "type": "SMT/Cardinality",
                             "valueType": "xs:string",
                             "value": "One"
+                        },
+                        {
+                            "type": "DppValueStatus",
+                            "valueType": "xs:string",
+                            "value": "Placeholder"
+                        },
+                        {
+                            "type": "DppValueStatusNote",
+                            "valueType": "xs:string",
+                            "value": "Product Carbon Footprint is not calculated for this product; values are prototype placeholders and are not authoritative DPP data."
                         }
                     ],
                     "semanticIdListElement": {
@@ -261,10 +271,21 @@
                                             "type": "SMT/Cardinality",
                                             "valueType": "xs:string",
                                             "value": "One"
+                                        },
+                                        {
+                                            "type": "DppValueStatus",
+                                            "valueType": "xs:string",
+                                            "value": "Placeholder"
+                                        },
+                                        {
+                                            "type": "DppValueStatusNote",
+                                            "valueType": "xs:string",
+                                            "value": "This CO2-equivalent value is a placeholder until a verified PCF calculation is available."
                                         }
                                     ],
                                     "valueType": "xs:decimal",
-                                    "modelType": "Property"
+                                    "modelType": "Property",
+                                    "value": "0.0"
                                 },
                                 {
                                     "category": "PARAMETER",
