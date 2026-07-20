@@ -6,7 +6,7 @@ from typing import Any
 WORKBOOK_FILENAME = "DPP_FIBROTOR_ER15_V2.xlsx"
 FINAL_ENVIRONMENT_FILENAME = "final_basyx_aas_environment.json"
 DEFAULT_AASX_FILENAME = "finaltemplate.aasx"
-DEFAULT_UPLOAD_URL = "http://localhost:8081/upload"
+DEFAULT_UPLOAD_URL = "https://localhost:8443/upload"
 DATA_DIRECTORY = "data"
 INPUT_DIRECTORY = "input"
 TEMPLATE_DIRECTORY = "templates"

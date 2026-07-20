@@ -1,4 +1,5 @@
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -44,6 +45,22 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="URL",
         help=f"Upload the AASX after generation (default URL: {DEFAULT_UPLOAD_URL}).",
     )
+    parser.add_argument(
+        "--access-token",
+        default=os.getenv("OIDC_ACCESS_TOKEN"),
+        help="Admin OIDC access token for upload (defaults to OIDC_ACCESS_TOKEN).",
+    )
+    tls_group = parser.add_mutually_exclusive_group()
+    tls_group.add_argument(
+        "--ca-certificate",
+        type=Path,
+        help="CA or self-signed gateway certificate used to verify HTTPS.",
+    )
+    tls_group.add_argument(
+        "--insecure",
+        action="store_true",
+        help="Disable TLS certificate verification for local testing only.",
+    )
     return parser
 
 
@@ -60,6 +77,14 @@ def main(argv: list[str] | None = None) -> int:
             aasx_path=args.aasx,
             create_aasx=not args.no_aasx,
             upload_url=args.upload,
+            upload_access_token=args.access_token,
+            upload_verify=(
+                False
+                if args.insecure
+                else str(args.ca_certificate.resolve())
+                if args.ca_certificate
+                else True
+            ),
         )
     except Exception as exc:
         print(f"Generation failed: {exc}", file=sys.stderr)

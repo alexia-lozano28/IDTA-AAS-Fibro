@@ -1,0 +1,28 @@
+infrastructures:
+  default: secured
+  secured:
+    name: Secured DPP Environment
+    template: full
+    components:
+      aasDiscovery:
+        baseUrl: "${PUBLIC_GATEWAY_URL}/registry/aas/lookup/shells"
+      aasRegistry:
+        baseUrl: "${PUBLIC_GATEWAY_URL}/registry/aas/shell-descriptors"
+        hasDiscoveryIntegration: true
+      submodelRegistry:
+        baseUrl: "${PUBLIC_GATEWAY_URL}/registry/submodels/submodel-descriptors"
+      aasRepository:
+        baseUrl: "${PUBLIC_GATEWAY_URL}/shells"
+        hasRegistryIntegration: true
+      submodelRepository:
+        baseUrl: "${PUBLIC_GATEWAY_URL}/submodels"
+        hasRegistryIntegration: true
+      conceptDescriptionRepository:
+        baseUrl: "${PUBLIC_GATEWAY_URL}/concept-descriptions"
+    security:
+      type: oauth2
+      config:
+        flow: auth-code
+        issuer: "${OIDC_ISSUER}"
+        clientId: basyx-web-ui
+        scope: openid profile email

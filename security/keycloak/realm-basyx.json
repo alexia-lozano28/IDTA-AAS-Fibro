@@ -1,0 +1,68 @@
+{
+  "realm": "basyx",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      { "name": "admin", "description": "May read and modify DPP data." },
+      { "name": "client", "description": "May only read DPP data." }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "basyx-api",
+      "name": "BaSyx API",
+      "enabled": true,
+      "bearerOnly": true,
+      "protocol": "openid-connect"
+    },
+    {
+      "clientId": "basyx-web-ui",
+      "name": "BaSyx Web UI",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": ["http://localhost:3000/*"],
+      "webOrigins": ["http://localhost:3000"],
+      "protocol": "openid-connect",
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "protocolMappers": [
+        {
+          "name": "basyx-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "basyx-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "firstName": "Local",
+      "lastName": "Administrator",
+      "email": "admin@local.test",
+      "emailVerified": true,
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "admin", "temporary": false }],
+      "realmRoles": ["admin"]
+    },
+    {
+      "username": "client",
+      "firstName": "Local",
+      "lastName": "Client",
+      "email": "client@local.test",
+      "emailVerified": true,
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "client", "temporary": false }],
+      "realmRoles": ["client"]
+    }
+  ]
+}

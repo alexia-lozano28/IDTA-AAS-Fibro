@@ -40,6 +40,8 @@ def run_pipeline(
     aasx_path: Path | None = None,
     create_aasx: bool = True,
     upload_url: str | None = None,
+    upload_access_token: str | None = None,
+    upload_verify: bool | str = True,
 ) -> GenerationResult:
     project_root = project_root.resolve()
     data_root = project_root / DATA_DIRECTORY
@@ -108,7 +110,14 @@ def run_pipeline(
     if upload_url:
         if resolved_aasx_path is None:
             raise ValueError("AASX generation must be enabled when uploading")
-        upload_status = upload_aasx(resolved_aasx_path, upload_url).status_code
+        if not upload_access_token:
+            raise ValueError("An admin OIDC access token is required when uploading")
+        upload_status = upload_aasx(
+            resolved_aasx_path,
+            upload_url,
+            access_token=upload_access_token,
+            verify=upload_verify,
+        ).status_code
 
     return GenerationResult(
         environment_path=environment_path,

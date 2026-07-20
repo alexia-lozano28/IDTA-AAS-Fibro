@@ -56,6 +56,8 @@ def upload_aasx(
     aasx_path: Path,
     upload_url: str,
     *,
+    access_token: str,
+    verify: bool | str = True,
     timeout: float = 30,
 ) -> requests.Response:
     with aasx_path.open("rb") as aasx_file:
@@ -68,7 +70,11 @@ def upload_aasx(
                     "application/octet-stream",
                 )
             },
-            headers={"Accept": "application/json"},
+            headers={
+                "Accept": "application/json",
+                "Authorization": f"Bearer {access_token}",
+            },
+            verify=verify,
             timeout=timeout,
         )
     response.raise_for_status()

@@ -11,6 +11,7 @@ requires-python = ">=3.10"
 dependencies = [
     "basyx-python-sdk==1.0.0",
     "openpyxl>=3.1,<4",
+    "PyJWT[crypto]>=2.10,<3",
     "requests>=2.31,<3",
 ]
 

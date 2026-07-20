@@ -38,12 +38,16 @@ Useful options:
 # Write artifacts somewhere else
 .venv/bin/python generate_aas.py --output-dir /tmp/dpp-output
 
-# Generate and upload to the local BaSyx environment
-.venv/bin/python generate_aas.py --upload
+# Generate and upload with an admin OIDC access token (automation only)
+OIDC_ACCESS_TOKEN=... .venv/bin/python generate_aas.py \
+  --upload \
+  --ca-certificate security/certs/gateway.crt
 ```
 
-Uploading is deliberately opt-in. Pass a URL after `--upload` to use a server
-other than `http://localhost:8081/upload`.
+Uploading is deliberately opt-in and requires an admin OIDC access token. Pass a URL
+after `--upload` to use a server other than
+`https://localhost:8443/upload`. `--insecure` is available only for local
+certificate troubleshooting.
 
 ## Code Layout
 
@@ -83,17 +87,59 @@ list items rather than being merged by `idShort`.
 
 ## Local BaSyx Stack
 
-Start the BaSyx Go components and PostgreSQL:
+Create local secrets and replace every `replace-with-...` value:
 
 ```bash
-docker compose up -d
+cp .env.example .env
+```
+
+Start the secured BaSyx components:
+
+```bash
+docker compose up -d --build
 ```
 
 Endpoints:
 
-- AAS Environment: http://localhost:8081
-- AAS Registry: http://localhost:8082
-- Submodel Registry: http://localhost:8083
+- Secured AAS API: https://localhost:8443
+- AAS Registry through gateway: https://localhost:8443/registry/aas
+- Submodel Registry through gateway:
+  https://localhost:8443/registry/submodels
 - AAS Web UI: http://localhost:3000
 
-Infrastructure connections for the UI are defined in `basyx-infra.yml`.
+The gateway generates a local TLS certificate in `security/certs/`. Open
+`https://localhost:8443/gateway/health` once and trust the local certificate.
+Then open the web UI. It redirects to Keycloak at
+`https://localhost:8443/auth/realms/basyx/protocol/openid-connect/auth` and
+returns to the UI after login.
+
+## Authentication And Roles
+
+The browser uses OAuth 2.0 authorization-code flow with PKCE. Keycloak owns
+the login page; the Web UI never receives a password. The gateway validates
+the access token signature against Keycloak's JWKS endpoint, then checks the
+token issuer, intended API audience, expiry, and realm role.
+
+- `admin` / `admin` has unrestricted GET, POST, PUT, PATCH, and DELETE access.
+- `client` / `client` can use GET and HEAD only. Write attempts receive HTTP 403.
+- Missing, expired, or invalid tokens receive HTTP 401.
+
+Both accounts use the same browser UI. Editing and uploading are available to
+the UI so administrators can manage AASX files. A client may see these controls
+but cannot complete a write because the gateway rejects it with HTTP 403.
+For automation, pass a short-lived OIDC access token to `AASClient` or the
+`--access-token` command-line option; static API keys are no longer accepted.
+
+The two passwords above are deliberately simple local-demo credentials. Change
+or remove the users in `security/keycloak/realm-basyx.json` before any shared
+deployment. The UI is served over HTTP only for local development; place it
+behind HTTPS with a real hostname and certificate in a deployed environment.
+
+The BaSyx repositories and registries are not published directly to the host,
+so the gateway cannot be bypassed. Team-to-team synchronization uses the HTTPS
+gateways and a read credential for the source plus an admin credential for the
+destination.
+
+For production, use a CA-issued certificate, restrict CORS and Keycloak redirect
+origins, store the Keycloak bootstrap secret outside Compose, and manage users
+and roles through your identity provider rather than the imported demo realm.

@@ -1,153 +1,89 @@
-import requests
-import json
-class AASClient_2:
-
-    def __init__(self, base_url):
-        self.base_url = base_url.rstrip("/")
-
-    def upload_aasx(self, aasx_path):
-
-        with open(aasx_path, "rb") as file:
-
-            files = {
-                "file": (
-                    aasx_path.split("/")[-1],
-                    file,
-                    "application/octet-stream"
-                )
-            }
-
-            response = requests.post(
-                f"{self.base_url}/upload",
-                files=files
-            )
-
-        response.raise_for_status()
-
-        return response
-
-    def get_shells(self):
-
-        response = requests.get(
-            f"{self.base_url}/shells"
-        )
-
-        response.raise_for_status()
-
-        return response.json()
-
-    def get_submodels(self):
-
-        response = requests.get(
-            f"{self.base_url}/submodels"
-        )
-
-        response.raise_for_status()
-
-        return response.json()
-    def get_shell(self, shell_id):
-
-        response = requests.get(
-            f"{self.base_url}/shells/{shell_id}"
-        )
-
-        response.raise_for_status()
-
-        return response.json()
-
-    def update_property(self,
-                    submodel_id,
-                    property_id,
-                    value):
-
-        url = (
-            f"{self.base_url}/submodels/"
-            f"{submodel_id}"
-            f"/submodel-elements/"
-            f"{property_id}"
-        )
-
-        response = requests.put(
-            url,
-            json={
-                "value": value
-            }
-        )
-
-        response.raise_for_status()
-
-        return response
-    
-    def create_submodel(self, submodel):
-        print("Creating submodel:")
-        print(json.dumps(submodel, indent=2))
-        response = requests.post(
-            f"{self.base_url}/submodels",
-            json=submodel
-        )
-
-        response.raise_for_status()
-
-        return response
-            
-    def create_asset(self, asset_info):
-        response = requests.post(
-                self.base_url + "/upload",
-                files={
-                    "file": (
-                        asset_info,
-                        "application/octet-stream",
-                    )
-                },
-                headers={"Accept": "application/json"},
-            )
-        response.raise_for_status()
-        return response
+from pathlib import Path
+from typing import Any
 
 import requests
 
 
 class AASClient:
-
-    def __init__(self, base_url):
+    def __init__(
+        self,
+        base_url: str,
+        *,
+        access_token: str,
+        verify: bool | str | Path = True,
+        timeout: float = 30,
+    ) -> None:
         self.base_url = base_url.rstrip("/")
-
-    # ---------- GET ----------
-
-    def get_shells(self):
-        return requests.get(f"{self.base_url}/shells").json()
-
-    def get_submodels(self):
-        return requests.get(f"{self.base_url}/submodels").json()
-
-    def get_concept_descriptions(self):
-        return requests.get(f"{self.base_url}/concept-descriptions").json()
-
-    # ---------- POST ----------
-
-    def create_shell(self, shell):
-        r = requests.post(
-            f"{self.base_url}/shells",
-            json=shell,
-            headers={"Content-Type": "application/json"},
+        self.timeout = timeout
+        self.verify = str(verify) if isinstance(verify, Path) else verify
+        self.session = requests.Session()
+        self.session.headers.update(
+            {
+                "Accept": "application/json",
+                "Authorization": f"Bearer {access_token}",
+            }
         )
-        r.raise_for_status()
-        return r
 
-    def create_submodel(self, submodel):
-        r = requests.post(
-            f"{self.base_url}/submodels",
-            json=submodel,
-            headers={"Content-Type": "application/json"},
-        )
-        r.raise_for_status()
-        return r
+    def get_shells(self) -> dict[str, Any]:
+        return self._json("GET", "/shells")
 
-    def create_concept_description(self, concept_description):
-        r = requests.post(
-            f"{self.base_url}/concept-descriptions",
-            json=concept_description,
-            headers={"Content-Type": "application/json"},
+    def get_submodels(self) -> dict[str, Any]:
+        return self._json("GET", "/submodels")
+
+    def get_concept_descriptions(self) -> dict[str, Any]:
+        return self._json("GET", "/concept-descriptions")
+
+    def get_shell(self, shell_id: str) -> dict[str, Any]:
+        return self._json("GET", f"/shells/{shell_id}")
+
+    def create_shell(self, shell: dict[str, Any]) -> requests.Response:
+        return self._request("POST", "/shells", json=shell)
+
+    def create_submodel(self, submodel: dict[str, Any]) -> requests.Response:
+        return self._request("POST", "/submodels", json=submodel)
+
+    def create_concept_description(
+        self, concept_description: dict[str, Any]
+    ) -> requests.Response:
+        return self._request(
+            "POST", "/concept-descriptions", json=concept_description
         )
-        r.raise_for_status()
-        return r
+
+    def update_property(
+        self, submodel_id: str, property_id: str, value: Any
+    ) -> requests.Response:
+        return self._request(
+            "PUT",
+            f"/submodels/{submodel_id}/submodel-elements/{property_id}",
+            json={"value": value},
+        )
+
+    def upload_aasx(self, aasx_path: Path) -> requests.Response:
+        with aasx_path.open("rb") as aasx_file:
+            return self._request(
+                "POST",
+                "/upload",
+                files={
+                    "file": (
+                        aasx_path.name,
+                        aasx_file,
+                        "application/octet-stream",
+                    )
+                },
+            )
+
+    def _json(self, method: str, path: str) -> dict[str, Any]:
+        return self._request(method, path).json()
+
+    def _request(
+        self, method: str, path: str, **kwargs: Any
+    ) -> requests.Response:
+        response = self.session.request(
+            method,
+            f"{self.base_url}{path}",
+            timeout=self.timeout,
+            verify=self.verify,
+            **kwargs,
+        )
+        response.raise_for_status()
+        return response
