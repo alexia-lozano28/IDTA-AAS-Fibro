@@ -1,9 +1,21 @@
+import os
+from pathlib import Path
+
 from client.client import AASClient
 
 
 def main() -> None:
-    team_a = AASClient("http://localhost:8081")
-    team_b = AASClient("http://localhost:8091")
+    certificate = Path("security/certs/gateway.crt")
+    team_a = AASClient(
+        "https://localhost:8443",
+        access_token=_required_environment("TEAM_A_CLIENT_ACCESS_TOKEN"),
+        verify=certificate,
+    )
+    team_b = AASClient(
+        "https://localhost:9443",
+        access_token=_required_environment("TEAM_B_ADMIN_ACCESS_TOKEN"),
+        verify=Path("security/certs-team-b/gateway.crt"),
+    )
 
     resources = (
         ("Shell", team_a.get_shells(), team_b.create_shell),
@@ -25,6 +37,13 @@ def main() -> None:
                 )
 
     print("\nSync completed.")
+
+
+def _required_environment(name: str) -> str:
+    value = os.getenv(name)
+    if not value:
+        raise RuntimeError(f"Required environment variable {name} is not set")
+    return value
 
 
 if __name__ == "__main__":
