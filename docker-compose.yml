@@ -37,7 +37,7 @@ services:
       MONGODB_PASSWORD: ${MONGODB_ROOT_PASSWORD:-change-me}
       MONGODB_AUTHENTICATION_DATABASE: admin
     ports:
-      - "127.0.0.1:${AAS_ENVIRONMENT_PORT:-8081}:8081"
+      - "${AAS_ENVIRONMENT_PORT:-8081}:8081"
     volumes:
       - ./config/aas-environment/application.properties:/application/application.properties:ro
 
@@ -59,7 +59,7 @@ services:
       BASYX_CORS_ALLOWED_METHODS: GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD
       BASYX_CORS_ALLOWED_HEADERS: "*"
     ports:
-      - "127.0.0.1:${AAS_REGISTRY_PORT:-8082}:8080"
+      - "${AAS_REGISTRY_PORT:-8082}:8080"
 
   submodel-registry:
     image: eclipsebasyx/submodel-registry-log-mongodb:2.0.0-milestone-10
@@ -79,7 +79,7 @@ services:
       BASYX_CORS_ALLOWED_METHODS: GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD
       BASYX_CORS_ALLOWED_HEADERS: "*"
     ports:
-      - "127.0.0.1:${SUBMODEL_REGISTRY_PORT:-8083}:8080"
+      - "${SUBMODEL_REGISTRY_PORT:-8083}:8080"
 
   web-ui:
     image: eclipsebasyx/aas-gui:v2-260707
@@ -92,7 +92,7 @@ services:
       AAS_WEB_UI_FEATURES_EDITING: "true"
       AAS_WEB_UI_FEATURES_UPLOADING: "true"
     ports:
-      - "127.0.0.1:${WEB_UI_PORT:-3000}:3000"
+      - "${WEB_UI_PORT:-3000}:3000"
    
     volumes:
       - ./basyx-infra.yml:/usr/src/app/dist/config/basyx-infra.yml
