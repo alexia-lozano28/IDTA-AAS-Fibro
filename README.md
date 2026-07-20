@@ -59,6 +59,22 @@ Carbon-footprint placeholder declarations live in
 semantics and datatype while adding explicit AAS qualifiers that mark values as
 non-authoritative placeholders.
 
+## Empty Values
+
+The generator treats the workbook's `Actual Value`, `Obligation`, and
+`Example Value` columns as follows:
+
+- an empty optional element or branch is omitted;
+- an empty mandatory leaf uses a datatype-valid example when one exists;
+- every substituted example is marked with `DppValueStatus=Placeholder` and a
+  `DppValueStatusNote` qualifier;
+- an empty mandatory leaf without a safe example is omitted and reported with
+  its worksheet, table, and row number.
+
+Workbook tables and repeated sections are retained as separate records during
+generation. In particular, repeated handover documents are emitted as distinct
+list items rather than being merged by `idShort`.
+
 ## Tests
 
 ```bash

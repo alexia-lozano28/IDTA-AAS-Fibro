@@ -3,8 +3,7 @@ from decimal import Decimal, InvalidOperation
 from typing import Any
 
 
-MISSING_MARKER = "__MISSING__"
-EMPTY_VALUES = {"", "N/A", MISSING_MARKER}
+EMPTY_VALUES = {"", "N/A"}
 TRUE_VALUES = {"true", "1", "yes", "y", "true.0"}
 FALSE_VALUES = {"false", "0", "no", "n", "false.0"}
 DATE_FORMATS = (

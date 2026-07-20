@@ -224,6 +224,270 @@
                     ]
                   },
                   "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Document identificator"
+                        },
+                        {
+                          "language": "de",
+                          "text": "Dokumentidentifikator"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "This SubmodelElementCollection holds the information for a VDI 2770 Document entity"
+                        }
+                      ],
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "0173-1#02-ABI501#003/0173-1#01-AHF580#003"
+                          }
+                        ]
+                      },
+                      "supplementalSemanticIds": [
+                        {
+                          "type": "ExternalReference",
+                          "keys": [
+                            {
+                              "type": "GlobalReference",
+                              "value": "0173-1#02-ABI501#003~0/0173-1#01-AHF580#003"
+                            },
+                            {
+                              "type": "GlobalReference",
+                              "value": "https://api.eclass-cdp.com/0173-1-02-ABI501-003/0173-1-01-AHF580-003"
+                            }
+                          ]
+                        }
+                      ],
+                      "qualifiers": [
+                        {
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                              }
+                            ]
+                          },
+                          "type": "SMT/Cardinality",
+                          "valueType": "xs:string",
+                          "value": "OneToMany"
+                        }
+                      ],
+                      "value": [
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "DocumentDomainId",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "document domain identificator"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Document Domain Identifikator"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH994#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH994-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "https://domain.com/..."
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "Fibro Rundtische GmbH"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "DocumentIdentifier",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document Identifyer"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentennummer"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAO099#004"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAO099-004"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "XF90-884"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "FIBROTOR_Datenblatt_EM_15_gb.pdf"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "DocumentIsPrimary",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document is primary"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokument ist primär"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH995#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH995-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "ZeroToOne"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "true"
+                            }
+                          ],
+                          "valueType": "xs:boolean",
+                          "modelType": "Property",
+                          "value": "true"
+                        }
+                      ],
+                      "modelType": "SubmodelElementCollection"
+                    }
+                  ],
                   "modelType": "SubmodelElementList"
                 },
                 {
@@ -284,6 +548,274 @@
                     ]
                   },
                   "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Document classification"
+                        },
+                        {
+                          "language": "de",
+                          "text": "Dokumentklassifikation"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "Set of information for describing the classification of the Document according to a ClassificationSystem"
+                        }
+                      ],
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "0173-1#02-ABI502#003/0173-1#01-AHF581#003"
+                          }
+                        ]
+                      },
+                      "supplementalSemanticIds": [
+                        {
+                          "type": "ExternalReference",
+                          "keys": [
+                            {
+                              "type": "GlobalReference",
+                              "value": "0173-1#02-ABI502#003~0/0173-1#01-AHF581#003"
+                            },
+                            {
+                              "type": "GlobalReference",
+                              "value": "https://api.eclass-cdp.com/0173-1-02-ABI502-003/0173-1-01-AHF581-003"
+                            }
+                          ]
+                        }
+                      ],
+                      "qualifiers": [
+                        {
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                              }
+                            ]
+                          },
+                          "type": "SMT/Cardinality",
+                          "valueType": "xs:string",
+                          "value": "OneToMany"
+                        }
+                      ],
+                      "value": [
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "ClassId",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Class identificator"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Klassenidentifikator"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH996#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH996-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "03-02"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "2026-02-03 00:00:00"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "ClassName",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Class Name"
+                            },
+                            {
+                              "language": "en",
+                              "text": "Klassenname"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABJ219#002"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABJ219-002"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Operation@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "Datasheet@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "ClassificationSystem",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Classification system"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Klassifizierungssystem"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH997#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH997-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "VDI2770:2020"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "VDI 2770"
+                        }
+                      ],
+                      "modelType": "SubmodelElementCollection"
+                    }
+                  ],
                   "modelType": "SubmodelElementList"
                 },
                 {
@@ -344,48 +876,42 @@
                     ]
                   },
                   "typeValueListElement": "SubmodelElementCollection",
-                  "modelType": "SubmodelElementList"
-                },
-                {
-                  "idShort": "DocumentedEntities",
-                  "semanticId": {
-                    "type": "ExternalReference",
-                    "keys": [
-                      {
-                        "type": "GlobalReference",
-                        "value": "https://admin-shell.io/vdi/2770/1/0/Document/DocumentedEntities"
-                      }
-                    ]
-                  },
-                  "qualifiers": [
-                    {
-                      "semanticId": {
-                        "type": "ExternalReference",
-                        "keys": [
-                          {
-                            "type": "GlobalReference",
-                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
-                          }
-                        ]
-                      },
-                      "type": "SMT/Cardinality",
-                      "valueType": "xs:string",
-                      "value": "ZeroToOne"
-                    }
-                  ],
-                  "typeValueListElement": "ReferenceElement",
                   "value": [
                     {
-                      "category": "PARAMETER",
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Document version"
+                        },
+                        {
+                          "language": "de",
+                          "text": "Document version"
+                        }
+                      ],
                       "semanticId": {
                         "type": "ExternalReference",
                         "keys": [
                           {
                             "type": "GlobalReference",
-                            "value": "https://admin-shell.io/vdi/2770/1/0/Document/DocumentedEntity"
+                            "value": "0173-1#02-ABI503#003/0173-1#01-AHF582#003"
                           }
                         ]
                       },
+                      "supplementalSemanticIds": [
+                        {
+                          "type": "ExternalReference",
+                          "keys": [
+                            {
+                              "type": "GlobalReference",
+                              "value": "0173-1#02-ABI503#003~0/0173-1#01-AHF582#003"
+                            },
+                            {
+                              "type": "GlobalReference",
+                              "value": "https://api.eclass-cdp.com/0173-1-02-ABI503-003"
+                            }
+                          ]
+                        }
+                      ],
                       "qualifiers": [
                         {
                           "semanticId": {
@@ -402,57 +928,844 @@
                           "value": "OneToMany"
                         }
                       ],
-                      "modelType": "ReferenceElement"
+                      "value": [
+                        {
+                          "idShort": "Language",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Language"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Sprache"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAN468#008"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAN468-008"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "type": "DppValueStatus",
+                              "valueType": "xs:string",
+                              "value": "Placeholder"
+                            },
+                            {
+                              "type": "DppValueStatusNote",
+                              "valueType": "xs:string",
+                              "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                            }
+                          ],
+                          "typeValueListElement": "Property",
+                          "valueTypeListElement": "xs:string",
+                          "value": [
+                            {
+                              "displayName": [
+                                {
+                                  "language": "en",
+                                  "text": "en (English)"
+                                },
+                                {
+                                  "language": "de",
+                                  "text": "en (Englisch)"
+                                }
+                              ],
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#02-AAN468#008"
+                                  }
+                                ]
+                              },
+                              "qualifiers": [
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "valueType": "xs:string",
+                                  "value": "OneToMany"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "ExampleValue",
+                                  "valueType": "xs:string",
+                                  "value": "en"
+                                },
+                                {
+                                  "type": "DppValueStatus",
+                                  "valueType": "xs:string",
+                                  "value": "Placeholder"
+                                },
+                                {
+                                  "type": "DppValueStatusNote",
+                                  "valueType": "xs:string",
+                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                                }
+                              ],
+                              "valueType": "xs:string",
+                              "valueId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#07-AAS045#003"
+                                  }
+                                ]
+                              },
+                              "modelType": "Property",
+                              "value": "en"
+                            },
+                            {
+                              "displayName": [
+                                {
+                                  "language": "en",
+                                  "text": "en (English)"
+                                },
+                                {
+                                  "language": "de",
+                                  "text": "en (Englisch)"
+                                }
+                              ],
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#02-AAN468#008"
+                                  }
+                                ]
+                              },
+                              "qualifiers": [
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "valueType": "xs:string",
+                                  "value": "OneToMany"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "ExampleValue",
+                                  "valueType": "xs:string",
+                                  "value": "en"
+                                },
+                                {
+                                  "type": "DppValueStatus",
+                                  "valueType": "xs:string",
+                                  "value": "Placeholder"
+                                },
+                                {
+                                  "type": "DppValueStatusNote",
+                                  "valueType": "xs:string",
+                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                                }
+                              ],
+                              "valueType": "xs:string",
+                              "valueId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#07-AAS045#003"
+                                  }
+                                ]
+                              },
+                              "modelType": "Property",
+                              "value": "de"
+                            }
+                          ],
+                          "modelType": "SubmodelElementList"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Version",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document version"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentenversion"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAP003#005"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAP003-005"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "V1.2"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "1.0"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Title",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document title"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumententitel"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABG940#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABG940-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Examplary title@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "FIBROTOR EM.15/ER.15 datasheet@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Description",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document description"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentenbeschreibung"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAN466#004"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAN466-004"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Abstract@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "Technical datasheet@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "StatusSetDate",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document status set date"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Datum der Einstellung des Dokumentenstatus"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABI000#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABI000-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "2020-02-06"
+                            }
+                          ],
+                          "valueType": "xs:date",
+                          "modelType": "Property",
+                          "value": "2026-07-10"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "StatusValue",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document status"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentstatus"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABI001#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABI001-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Released"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "Released"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "OrganizationShortName",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Organization short name"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Kurzname der Organisation"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://api.eclass-cdp.com/0173-1-02-ABI002-003"
+                              }
+                            ]
+                          },
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Example company"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "FIBRO RT"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "OrganizationOfficialName",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Organization official name"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Offizieller Name der Organisation"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABI004#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABI004-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Example company Ltd."
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "Fibro Rundtische GmbH"
+                        },
+                        {
+                          "idShort": "DigitalFiles",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Digital files"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Digitale Dateien"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABK126#002"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABK126-002"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            }
+                          ],
+                          "typeValueListElement": "File",
+                          "value": [
+                            {
+                              "displayName": [
+                                {
+                                  "language": "en",
+                                  "text": "Name of the specific digital file@en"
+                                },
+                                {
+                                  "language": "de",
+                                  "text": "Name der spezifischen digitalen Datei@de"
+                                }
+                              ],
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#02-ABK126#002"
+                                  }
+                                ]
+                              },
+                              "qualifiers": [
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "valueType": "xs:string",
+                                  "value": "OneToMany"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "ExampleValue",
+                                  "valueType": "xs:string",
+                                  "value": "docu_cecc_fullmanual_DE.PDF"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "AllowedIdShort",
+                                  "valueType": "xs:string",
+                                  "value": "DigitalFile[\\d{2,3}]"
+                                }
+                              ],
+                              "contentType": "application/pdf",
+                              "modelType": "File",
+                              "value": "https://www.fibrort.com/api/downloads/file/FIBROTOR_Datenblatt_EM_15_gb.pdf"
+                            }
+                          ],
+                          "modelType": "SubmodelElementList"
+                        }
+                      ],
+                      "modelType": "SubmodelElementCollection"
                     }
                   ],
                   "modelType": "SubmodelElementList"
                 }
               ],
               "modelType": "SubmodelElementCollection"
-            }
-          ],
-          "modelType": "SubmodelElementList"
-        },
-        {
-          "idShort": "Entities",
-          "semanticId": {
-            "type": "ExternalReference",
-            "keys": [
-              {
-                "type": "GlobalReference",
-                "value": "https://admin-shell.io/vdi/2770/1/0/EntitiesForDocumentation"
-              }
-            ]
-          },
-          "qualifiers": [
+            },
             {
+              "description": [
+                {
+                  "language": "en",
+                  "text": "This SubmodelElementCollection holds the information for a VDI 2770 Document entity"
+                }
+              ],
               "semanticId": {
                 "type": "ExternalReference",
                 "keys": [
                   {
                     "type": "GlobalReference",
-                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                    "value": "0173-1#02-ABI500#003/0173-1#01-AHF579#003"
                   }
                 ]
               },
-              "type": "SMT/Cardinality",
-              "valueType": "xs:string",
-              "value": "ZeroToOne"
-            }
-          ],
-          "typeValueListElement": "Entity",
-          "value": [
-            {
-              "category": "PARAMETER",
-              "semanticId": {
-                "type": "ExternalReference",
-                "keys": [
-                  {
-                    "type": "GlobalReference",
-                    "value": "https://admin-shell.io/vdi/2770/1/0/EntityForDocumentation"
-                  }
-                ]
-              },
+              "supplementalSemanticIds": [
+                {
+                  "type": "ExternalReference",
+                  "keys": [
+                    {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-ABI500#003~0/0173-1#01-AHF579#003"
+                    },
+                    {
+                      "type": "GlobalReference",
+                      "value": "https://api.eclass-cdp.com/0173-1-02-ABI500-003/0173-1-01-AHF579-003"
+                    }
+                  ]
+                }
+              ],
               "qualifiers": [
                 {
                   "semanticId": {
@@ -469,8 +1782,1646 @@
                   "value": "OneToMany"
                 }
               ],
-              "entityType": "CoManagedEntity",
-              "modelType": "Entity"
+              "value": [
+                {
+                  "idShort": "DocumentIds",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Document identifyers"
+                    },
+                    {
+                      "language": "de",
+                      "text": "Dokumentidentifikatoren"
+                    }
+                  ],
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0173-1#02-ABI501#003"
+                      }
+                    ]
+                  },
+                  "supplementalSemanticIds": [
+                    {
+                      "type": "ExternalReference",
+                      "keys": [
+                        {
+                          "type": "GlobalReference",
+                          "value": "https://api.eclass-cdp.com/0173-1-02-ABI501-003"
+                        }
+                      ]
+                    }
+                  ],
+                  "qualifiers": [
+                    {
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      },
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One"
+                    }
+                  ],
+                  "semanticIdListElement": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0173-1#02-ABI501#003/0173-1#01-AHF580#003"
+                      }
+                    ]
+                  },
+                  "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Document identificator"
+                        },
+                        {
+                          "language": "de",
+                          "text": "Dokumentidentifikator"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "This SubmodelElementCollection holds the information for a VDI 2770 Document entity"
+                        }
+                      ],
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "0173-1#02-ABI501#003/0173-1#01-AHF580#003"
+                          }
+                        ]
+                      },
+                      "supplementalSemanticIds": [
+                        {
+                          "type": "ExternalReference",
+                          "keys": [
+                            {
+                              "type": "GlobalReference",
+                              "value": "0173-1#02-ABI501#003~0/0173-1#01-AHF580#003"
+                            },
+                            {
+                              "type": "GlobalReference",
+                              "value": "https://api.eclass-cdp.com/0173-1-02-ABI501-003/0173-1-01-AHF580-003"
+                            }
+                          ]
+                        }
+                      ],
+                      "qualifiers": [
+                        {
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                              }
+                            ]
+                          },
+                          "type": "SMT/Cardinality",
+                          "valueType": "xs:string",
+                          "value": "OneToMany"
+                        }
+                      ],
+                      "value": [
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "DocumentDomainId",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "document domain identificator"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Document Domain Identifikator"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH994#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH994-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "https://domain.com/..."
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "Fibro Rundtische GmbH"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "DocumentIdentifier",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document Identifyer"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentennummer"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAO099#004"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAO099-004"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "XF90-884"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "FIBROTOR EM/ER.15 – CAD-Daten"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "DocumentIsPrimary",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document is primary"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokument ist primär"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH995#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH995-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "ZeroToOne"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "true"
+                            }
+                          ],
+                          "valueType": "xs:boolean",
+                          "modelType": "Property",
+                          "value": "true"
+                        }
+                      ],
+                      "modelType": "SubmodelElementCollection"
+                    }
+                  ],
+                  "modelType": "SubmodelElementList"
+                },
+                {
+                  "idShort": "DocumentClassifications",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Document classifications"
+                    },
+                    {
+                      "language": "de",
+                      "text": "Dokumentklassifikationen"
+                    }
+                  ],
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0173-1#02-ABI502#003"
+                      }
+                    ]
+                  },
+                  "supplementalSemanticIds": [
+                    {
+                      "type": "ExternalReference",
+                      "keys": [
+                        {
+                          "type": "GlobalReference",
+                          "value": "https://api.eclass-cdp.com/0173-1-02-ABI502-003"
+                        }
+                      ]
+                    }
+                  ],
+                  "qualifiers": [
+                    {
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      },
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One"
+                    }
+                  ],
+                  "semanticIdListElement": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0173-1#02-ABI502#003/0173-1#01-AHF581#003"
+                      }
+                    ]
+                  },
+                  "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Document classification"
+                        },
+                        {
+                          "language": "de",
+                          "text": "Dokumentklassifikation"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "Set of information for describing the classification of the Document according to a ClassificationSystem"
+                        }
+                      ],
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "0173-1#02-ABI502#003/0173-1#01-AHF581#003"
+                          }
+                        ]
+                      },
+                      "supplementalSemanticIds": [
+                        {
+                          "type": "ExternalReference",
+                          "keys": [
+                            {
+                              "type": "GlobalReference",
+                              "value": "0173-1#02-ABI502#003~0/0173-1#01-AHF581#003"
+                            },
+                            {
+                              "type": "GlobalReference",
+                              "value": "https://api.eclass-cdp.com/0173-1-02-ABI502-003/0173-1-01-AHF581-003"
+                            }
+                          ]
+                        }
+                      ],
+                      "qualifiers": [
+                        {
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                              }
+                            ]
+                          },
+                          "type": "SMT/Cardinality",
+                          "valueType": "xs:string",
+                          "value": "OneToMany"
+                        }
+                      ],
+                      "value": [
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "ClassId",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Class identificator"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Klassenidentifikator"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH996#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH996-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "03-02"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "03-02"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "ClassName",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Class Name"
+                            },
+                            {
+                              "language": "en",
+                              "text": "Klassenname"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABJ219#002"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABJ219-002"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Operation@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "CAD model@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "ClassificationSystem",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Classification system"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Klassifizierungssystem"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH997#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH997-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "VDI2770:2020"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "VDI 2770"
+                        }
+                      ],
+                      "modelType": "SubmodelElementCollection"
+                    }
+                  ],
+                  "modelType": "SubmodelElementList"
+                },
+                {
+                  "idShort": "DocumentVersions",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Document versions"
+                    },
+                    {
+                      "language": "de",
+                      "text": "Dokumentenversionen"
+                    }
+                  ],
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0173-1#02-ABI503#003"
+                      }
+                    ]
+                  },
+                  "supplementalSemanticIds": [
+                    {
+                      "type": "ExternalReference",
+                      "keys": [
+                        {
+                          "type": "GlobalReference",
+                          "value": "https://api.eclass-cdp.com/0173-1-02-ABI503-003"
+                        }
+                      ]
+                    }
+                  ],
+                  "qualifiers": [
+                    {
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      },
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One"
+                    }
+                  ],
+                  "semanticIdListElement": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0173-1#02-ABI503#003/0173-1#01-AHF582#003"
+                      }
+                    ]
+                  },
+                  "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Document version"
+                        },
+                        {
+                          "language": "de",
+                          "text": "Document version"
+                        }
+                      ],
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "0173-1#02-ABI503#003/0173-1#01-AHF582#003"
+                          }
+                        ]
+                      },
+                      "supplementalSemanticIds": [
+                        {
+                          "type": "ExternalReference",
+                          "keys": [
+                            {
+                              "type": "GlobalReference",
+                              "value": "0173-1#02-ABI503#003~0/0173-1#01-AHF582#003"
+                            },
+                            {
+                              "type": "GlobalReference",
+                              "value": "https://api.eclass-cdp.com/0173-1-02-ABI503-003"
+                            }
+                          ]
+                        }
+                      ],
+                      "qualifiers": [
+                        {
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                              }
+                            ]
+                          },
+                          "type": "SMT/Cardinality",
+                          "valueType": "xs:string",
+                          "value": "OneToMany"
+                        }
+                      ],
+                      "value": [
+                        {
+                          "idShort": "Language",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Language"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Sprache"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAN468#008"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAN468-008"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "type": "DppValueStatus",
+                              "valueType": "xs:string",
+                              "value": "Placeholder"
+                            },
+                            {
+                              "type": "DppValueStatusNote",
+                              "valueType": "xs:string",
+                              "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                            }
+                          ],
+                          "typeValueListElement": "Property",
+                          "valueTypeListElement": "xs:string",
+                          "value": [
+                            {
+                              "displayName": [
+                                {
+                                  "language": "en",
+                                  "text": "en (English)"
+                                },
+                                {
+                                  "language": "de",
+                                  "text": "en (Englisch)"
+                                }
+                              ],
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#02-AAN468#008"
+                                  }
+                                ]
+                              },
+                              "qualifiers": [
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "valueType": "xs:string",
+                                  "value": "OneToMany"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "ExampleValue",
+                                  "valueType": "xs:string",
+                                  "value": "en"
+                                },
+                                {
+                                  "type": "DppValueStatus",
+                                  "valueType": "xs:string",
+                                  "value": "Placeholder"
+                                },
+                                {
+                                  "type": "DppValueStatusNote",
+                                  "valueType": "xs:string",
+                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                                }
+                              ],
+                              "valueType": "xs:string",
+                              "valueId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#07-AAS045#003"
+                                  }
+                                ]
+                              },
+                              "modelType": "Property",
+                              "value": "en"
+                            },
+                            {
+                              "displayName": [
+                                {
+                                  "language": "en",
+                                  "text": "en (English)"
+                                },
+                                {
+                                  "language": "de",
+                                  "text": "en (Englisch)"
+                                }
+                              ],
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#02-AAN468#008"
+                                  }
+                                ]
+                              },
+                              "qualifiers": [
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "valueType": "xs:string",
+                                  "value": "OneToMany"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "ExampleValue",
+                                  "valueType": "xs:string",
+                                  "value": "en"
+                                },
+                                {
+                                  "type": "DppValueStatus",
+                                  "valueType": "xs:string",
+                                  "value": "Placeholder"
+                                },
+                                {
+                                  "type": "DppValueStatusNote",
+                                  "valueType": "xs:string",
+                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                                }
+                              ],
+                              "valueType": "xs:string",
+                              "valueId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#07-AAS045#003"
+                                  }
+                                ]
+                              },
+                              "modelType": "Property",
+                              "value": "de"
+                            }
+                          ],
+                          "modelType": "SubmodelElementList"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Version",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document version"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentenversion"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAP003#005"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAP003-005"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "V1.2"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "V1"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Title",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document title"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumententitel"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABG940#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABG940-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Examplary title@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "CAD Data@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Subtitle",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Subtitle"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Untertitel"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABH998#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABH998-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "ZeroToOne"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Examplary subtitle@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "Fibrotor ER/EM.15@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "Description",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document description"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentenbeschreibung"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-AAN466#004"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-AAN466-004"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Abstract@en"
+                            }
+                          ],
+                          "modelType": "MultiLanguageProperty",
+                          "value": [
+                            {
+                              "language": "en",
+                              "text": "CAD Data for Fibrotor ER.15/EM.15@en"
+                            }
+                          ]
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "StatusSetDate",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document status set date"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Datum der Einstellung des Dokumentenstatus"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABI000#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABI000-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "2020-02-06"
+                            }
+                          ],
+                          "valueType": "xs:date",
+                          "modelType": "Property",
+                          "value": "2026-07-10"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "StatusValue",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Document status"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Dokumentstatus"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABI001#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABI001-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Released"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "Released"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "OrganizationShortName",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Organization short name"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Kurzname der Organisation"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://api.eclass-cdp.com/0173-1-02-ABI002-003"
+                              }
+                            ]
+                          },
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Example company"
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "FIBRO RT"
+                        },
+                        {
+                          "category": "PARAMETER",
+                          "idShort": "OrganizationOfficialName",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Organization official name"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Offizieller Name der Organisation"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABI004#003"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABI004-003"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            },
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "ExampleValue",
+                              "valueType": "xs:string",
+                              "value": "Example company Ltd."
+                            }
+                          ],
+                          "valueType": "xs:string",
+                          "modelType": "Property",
+                          "value": "FIBRO Rundtische GmbH"
+                        },
+                        {
+                          "idShort": "DigitalFiles",
+                          "displayName": [
+                            {
+                              "language": "en",
+                              "text": "Digital files"
+                            },
+                            {
+                              "language": "de",
+                              "text": "Digitale Dateien"
+                            }
+                          ],
+                          "semanticId": {
+                            "type": "ExternalReference",
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "0173-1#02-ABK126#002"
+                              }
+                            ]
+                          },
+                          "supplementalSemanticIds": [
+                            {
+                              "type": "ExternalReference",
+                              "keys": [
+                                {
+                                  "type": "GlobalReference",
+                                  "value": "https://api.eclass-cdp.com/0173-1-02-ABK126-002"
+                                }
+                              ]
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                  }
+                                ]
+                              },
+                              "type": "SMT/Cardinality",
+                              "valueType": "xs:string",
+                              "value": "One"
+                            }
+                          ],
+                          "typeValueListElement": "File",
+                          "value": [
+                            {
+                              "displayName": [
+                                {
+                                  "language": "en",
+                                  "text": "Name of the specific digital file@en"
+                                },
+                                {
+                                  "language": "de",
+                                  "text": "Name der spezifischen digitalen Datei@de"
+                                }
+                              ],
+                              "semanticId": {
+                                "type": "ExternalReference",
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "0173-1#02-ABK126#002"
+                                  }
+                                ]
+                              },
+                              "qualifiers": [
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "valueType": "xs:string",
+                                  "value": "OneToMany"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "ExampleValue",
+                                  "valueType": "xs:string",
+                                  "value": "docu_cecc_fullmanual_DE.PDF"
+                                },
+                                {
+                                  "semanticId": {
+                                    "type": "ExternalReference",
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0"
+                                      }
+                                    ]
+                                  },
+                                  "type": "AllowedIdShort",
+                                  "valueType": "xs:string",
+                                  "value": "DigitalFile[\\d{2,3}]"
+                                }
+                              ],
+                              "contentType": "application/pdf",
+                              "modelType": "File",
+                              "value": "https://www.fibrort.com/api/downloads/file/4-815-000-3000.zip"
+                            }
+                          ],
+                          "modelType": "SubmodelElementList"
+                        }
+                      ],
+                      "modelType": "SubmodelElementCollection"
+                    }
+                  ],
+                  "modelType": "SubmodelElementList"
+                }
+              ],
+              "modelType": "SubmodelElementCollection"
             }
           ],
           "modelType": "SubmodelElementList"

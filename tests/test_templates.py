@@ -1,33 +1,9 @@
 import unittest
 
-from dpp_aas.templates import fill_elements, normalize_elements
+from dpp_aas.templates import normalize_elements
 
 
 class TemplateTests(unittest.TestCase):
-    def test_fills_elements_below_unnamed_list_items(self) -> None:
-        elements = [
-            {
-                "idShort": "Items",
-                "modelType": "SubmodelElementList",
-                "value": [
-                    {
-                        "modelType": "SubmodelElementCollection",
-                        "value": [
-                            {
-                                "idShort": "Amount",
-                                "modelType": "Property",
-                                "valueType": "xs:decimal",
-                            }
-                        ],
-                    }
-                ],
-            }
-        ]
-
-        fill_elements(elements, {"Amount": 2.5})
-
-        self.assertEqual("2.5", elements[0]["value"][0]["value"][0]["value"])
-
     def test_normalizes_known_aas_v3_template_conflicts(self) -> None:
         elements = [
             {

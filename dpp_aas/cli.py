@@ -75,7 +75,7 @@ def main(argv: list[str] | None = None) -> int:
         for missing in result.missing_mandatory:
             print(f"  - {missing}")
     if result.warnings:
-        print(f"Normalization warnings: {len(result.warnings)}")
+        print(f"Generation warnings: {len(result.warnings)}")
         for warning in result.warnings:
             print(f"  - {warning}")
     if result.upload_status is not None:

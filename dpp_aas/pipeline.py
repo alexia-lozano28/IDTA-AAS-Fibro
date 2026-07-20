@@ -55,17 +55,19 @@ def run_pipeline(
 
     generated: dict[str, dict] = {}
     generated_paths: list[Path] = []
+    missing_mandatory: list[MissingField] = []
     warnings: list[str] = []
     for spec in TEMPLATE_SPECS:
         if spec.sheet_name not in workbook_data.sheets:
             warnings.append(f"Skipped missing worksheet {spec.sheet_name!r}")
             continue
 
-        environment, template_warnings = instantiate_template(
+        environment, template_warnings, template_missing = instantiate_template(
             template_dir / spec.template_filename,
             workbook_data.sheets[spec.sheet_name],
             DPP_VALUE_DISCLOSURES.get(spec.sheet_name),
         )
+        missing_mandatory.extend(template_missing)
         warnings.extend(
             f"{spec.sheet_name}: {warning}" for warning in template_warnings
         )
@@ -113,7 +115,7 @@ def run_pipeline(
         aasx_path=resolved_aasx_path,
         product_uri=product_uri,
         generated_files=tuple(generated_paths),
-        missing_mandatory=workbook_data.missing_mandatory,
+        missing_mandatory=tuple(missing_mandatory),
         warnings=tuple(warnings),
         upload_status=upload_status,
     )

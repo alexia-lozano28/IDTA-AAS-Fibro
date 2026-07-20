@@ -1,43 +1,31 @@
 from client.client import AASClient
 
-# Origin server  (Team A)
-team_a = AASClient("http://localhost:8081")
 
-# Destination server (Team B)
-team_b = AASClient("http://localhost:8091")
+def main() -> None:
+    team_a = AASClient("http://localhost:8081")
+    team_b = AASClient("http://localhost:8091")
 
+    resources = (
+        ("Shell", team_a.get_shells(), team_b.create_shell),
+        ("Submodel", team_a.get_submodels(), team_b.create_submodel),
+        (
+            "ConceptDescription",
+            team_a.get_concept_descriptions(),
+            team_b.create_concept_description,
+        ),
+    )
+    for resource_name, response, create in resources:
+        for item in response.get("result", []):
+            try:
+                create(item)
+                print(f"{resource_name} created: {item['idShort']}")
+            except Exception as exc:
+                print(
+                    f"Error creating {resource_name} {item['idShort']}: {exc}"
+                )
 
-# Resources origin
-shells = team_a.get_shells()
-submodels = team_a.get_submodels()
-concept_descriptions = team_a.get_concept_descriptions()
-
-
-# Copy AAS
-for shell in shells.get("result", []):
-    try:
-        team_b.create_shell(shell)
-        print(f"✓ Shell created: {shell['idShort']}")
-    except Exception as e:
-        print(f"✗ Error creating Shell {shell['idShort']}: {e}")
-
-
-# Copy Submodels
-for submodel in submodels.get("result", []):
-    try:
-        team_b.create_submodel(submodel)
-        print(f"✓ Submodel created: {submodel['idShort']}")
-    except Exception as e:
-        print(f"✗ Error creating Submodel {submodel['idShort']}: {e}")
+    print("\nSync completed.")
 
 
-# Copy ConceptDescriptions
-for cd in concept_descriptions.get("result", []):
-    try:
-        team_b.create_concept_description(cd)
-        print(f"✓ ConceptDescription created: {cd['idShort']}")
-    except Exception as e:
-        print(f"✗ Error creating ConceptDescription {cd['idShort']}: {e}")
-
-
-print("\nSync completed.")
+if __name__ == "__main__":
+    main()
