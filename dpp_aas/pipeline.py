@@ -109,6 +109,7 @@ def run_pipeline(
         if resolved_aasx_path is None:
             raise ValueError("AASX generation must be enabled when uploading")
         upload_status = upload_aasx(resolved_aasx_path, upload_url).status_code
+        
 
     return GenerationResult(
         environment_path=environment_path,

@@ -4,19 +4,19 @@ infrastructures:
     name: Minimal BaSyx
     components:
       aasDiscovery:
-        baseUrl: http://localhost:8082/lookup/shells
+        baseUrl: http://172.17.242.161/lookup/shells
       aasRegistry:
-        baseUrl: http://localhost:8082/shell-descriptors
+        baseUrl: http://172.17.242.161/shell-descriptors
         hasDiscoveryIntegration: true
       submodelRegistry:
-        baseUrl: http://localhost:8083/submodel-descriptors
+        baseUrl: http://172.17.242.161/submodel-descriptors
       aasRepository:
-        baseUrl: http://localhost:8081/shells
+        baseUrl: http://172.17.242.161/shells
         hasRegistryIntegration: true
       submodelRepository:
-        baseUrl: http://localhost:8081/submodels
+        baseUrl: http://172.17.242.161/submodels
         hasRegistryIntegration: true
       conceptDescriptionRepository:
-        baseUrl: http://localhost:8081/concept-descriptions
+        baseUrl: http://172.17.242.161/concept-descriptions
     security:
       type: none

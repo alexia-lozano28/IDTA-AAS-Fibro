@@ -1,5 +1,16 @@
 name: teama-aas
 services:
+  keycloak:
+      image: quay.io/keycloak/keycloak:26.3
+      container_name: keycloak
+      restart: unless-stopped
+      environment:
+        KC_BOOTSTRAP_ADMIN_USERNAME: admin
+        KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      ports:
+        - "8080:8080"
+      command:
+        - start-dev
   mongodb:
     image: mongo:8
     container_name: fibro-aas-mongodb

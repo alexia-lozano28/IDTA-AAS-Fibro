@@ -2,8 +2,8 @@ from client.client import AASClient
 
 
 def main() -> None:
-    team_a = AASClient("http://localhost:8081")
-    team_b = AASClient("http://localhost:8091")
+    team_a = AASClient("http://172.17.242.161:8081")
+    team_b = AASClient("http://192.168.56.128:8081")
 
     resources = (
         ("Shell", team_a.get_shells(), team_b.create_shell),
