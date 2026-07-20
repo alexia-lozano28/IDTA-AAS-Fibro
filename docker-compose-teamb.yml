@@ -1,16 +1,16 @@
-name: teama-aas
+name: teamb-aas
 services:
   mongodb:
     image: mongo:8
-    container_name: fibro-aas-mongodb
+    container_name: teamb-aas-mongodb
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME:-basyx}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD:-change-me}
     ports:
-      - "127.0.0.1:${MONGODB_PORT:-27017}:27017"
+      - "127.0.0.1:27018:27017"
     volumes:
-      - mongodb-data:/data/db
+      - mongodb-data-teamb:/data/db
     healthcheck:
       test:
         [
@@ -24,7 +24,7 @@ services:
 
   aas-environment:
     image: eclipsebasyx/aas-environment:2.0.0-milestone-10
-    container_name: fibro-aas-environment
+    container_name: teamb-aas-environment
     restart: unless-stopped
     depends_on:
       mongodb:
@@ -37,13 +37,13 @@ services:
       MONGODB_PASSWORD: ${MONGODB_ROOT_PASSWORD:-change-me}
       MONGODB_AUTHENTICATION_DATABASE: admin
     ports:
-      - "127.0.0.1:${AAS_ENVIRONMENT_PORT:-8081}:8081"
+      - "127.0.0.1:8091:8081"
     volumes:
-      - ./config/aas-environment/application.properties:/application/application.properties:ro
+      - ./config/teamB/application.properties:/application/application.properties:ro
 
   aas-registry:
     image: eclipsebasyx/aas-registry-log-mongodb:2.0.0-milestone-10
-    container_name: fibro-aas-registry
+    container_name: teamb-aas-registry
     restart: unless-stopped
     depends_on:
       mongodb:
@@ -59,11 +59,11 @@ services:
       BASYX_CORS_ALLOWED_METHODS: GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD
       BASYX_CORS_ALLOWED_HEADERS: "*"
     ports:
-      - "127.0.0.1:${AAS_REGISTRY_PORT:-8082}:8080"
+      - "127.0.0.1:8092:8080"
 
   submodel-registry:
     image: eclipsebasyx/submodel-registry-log-mongodb:2.0.0-milestone-10
-    container_name: fibro-submodel-registry
+    container_name: teamb-submodel-registry
     restart: unless-stopped
     depends_on:
       mongodb:
@@ -79,11 +79,11 @@ services:
       BASYX_CORS_ALLOWED_METHODS: GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD
       BASYX_CORS_ALLOWED_HEADERS: "*"
     ports:
-      - "127.0.0.1:${SUBMODEL_REGISTRY_PORT:-8083}:8080"
+      - "127.0.0.1:8093:8080"
 
   web-ui:
     image: eclipsebasyx/aas-gui:v2-260707
-    container_name: fibro-aas-web-ui
+    container_name: teamb-aas-web-ui
     restart: unless-stopped
     depends_on:
       mongodb:
@@ -92,10 +92,10 @@ services:
       AAS_WEB_UI_FEATURES_EDITING: "true"
       AAS_WEB_UI_FEATURES_UPLOADING: "true"
     ports:
-      - "127.0.0.1:${WEB_UI_PORT:-3000}:3000"
+      - "127.0.0.1:3001:3000"
    
     volumes:
-      - ./basyx-infra.yml:/usr/src/app/dist/config/basyx-infra.yml
+      - ./config/teamB/basyx-infra.yml:/usr/src/app/dist/config/basyx-infra.yml
 
 volumes:
-  mongodb-data:
+  mongodb-data-teamb:

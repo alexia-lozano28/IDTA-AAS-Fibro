@@ -1,0 +1,2 @@
+[console_scripts]
+dpp-aas = dpp_aas.cli:main

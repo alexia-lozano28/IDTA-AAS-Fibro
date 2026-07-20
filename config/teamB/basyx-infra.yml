@@ -1,0 +1,22 @@
+infrastructures:
+  default: infra1
+  infra1:
+    name: Minimal BaSyx
+    components:
+      aasDiscovery:
+        baseUrl: http://localhost:8091/lookup/shells
+      aasRegistry:
+        baseUrl: http://localhost:8092/shell-descriptors
+        hasDiscoveryIntegration: true
+      submodelRegistry:
+        baseUrl: http://localhost:8093/submodel-descriptors
+      aasRepository:
+        baseUrl: http://localhost:8091/shells
+        hasRegistryIntegration: true
+      submodelRepository:
+        baseUrl: http://localhost:8093/submodels
+        hasRegistryIntegration: true
+      conceptDescriptionRepository:
+        baseUrl: http://localhost:8091/concept-descriptions
+    security:
+      type: none
