@@ -5,6 +5,8 @@ import requests
 
 
 class AASClient:
+    """Client for the secured BaSyx AAS environment API."""
+
     def __init__(
         self,
         base_url: str,

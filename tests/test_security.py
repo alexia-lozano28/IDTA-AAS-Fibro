@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 from dpp_aas.security_gateway import (
     AuthenticationError,
@@ -83,6 +84,24 @@ class GatewayRoutingTests(unittest.TestCase):
             self.config.upstream_url(
                 "/registry/submodels/submodel-descriptors"
             ),
+        )
+
+
+class DeploymentConfigurationTests(unittest.TestCase):
+    def test_aas_descriptors_use_browser_reachable_gateway(self) -> None:
+        project_root = Path(__file__).resolve().parents[1]
+        properties = (
+            project_root / "config/aas-environment/application.properties"
+        ).read_text(encoding="utf-8")
+        compose = (project_root / "docker-compose.yml").read_text(encoding="utf-8")
+
+        self.assertIn(
+            "basyx.externalurl=${BASYX_EXTERNAL_URL:https://localhost:8443}",
+            properties,
+        )
+        self.assertIn(
+            "BASYX_EXTERNAL_URL: ${PUBLIC_GATEWAY_URL:-https://localhost:8443}",
+            compose,
         )
 
 

@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from .aasx import upload_aasx, write_aasx
+from .aasx import write_aasx
+from .client import AASClient
 from .config import (
     ASSET_DIRECTORY,
     DATA_DIRECTORY,
@@ -112,12 +113,11 @@ def run_pipeline(
             raise ValueError("AASX generation must be enabled when uploading")
         if not upload_access_token:
             raise ValueError("An admin OIDC access token is required when uploading")
-        upload_status = upload_aasx(
-            resolved_aasx_path,
-            upload_url,
+        upload_status = AASClient(
+            upload_url.removesuffix("/upload"),
             access_token=upload_access_token,
             verify=upload_verify,
-        ).status_code
+        ).upload_aasx(resolved_aasx_path).status_code
 
     return GenerationResult(
         environment_path=environment_path,

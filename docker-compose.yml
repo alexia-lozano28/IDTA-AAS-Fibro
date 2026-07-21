@@ -1,4 +1,4 @@
-name: teama-aas
+name: fibro-aas
 services:
   mongodb:
     image: mongo:8
@@ -34,6 +34,7 @@ services:
       MONGODB_USERNAME: ${MONGODB_ROOT_USERNAME:-basyx}
       MONGODB_PASSWORD: ${MONGODB_ROOT_PASSWORD:-change-me}
       MONGODB_AUTHENTICATION_DATABASE: admin
+      BASYX_EXTERNAL_URL: ${PUBLIC_GATEWAY_URL:-https://localhost:8443}
     volumes:
       - ./config/aas-environment/application.properties:/application/application.properties:ro
 

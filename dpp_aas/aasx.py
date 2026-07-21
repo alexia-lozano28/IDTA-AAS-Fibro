@@ -3,7 +3,6 @@ import mimetypes
 from pathlib import Path
 from typing import Any
 
-import requests
 from basyx.aas import model
 from basyx.aas.adapter import json as aas_json
 from basyx.aas.adapter.aasx import AASXWriter, DictSupplementaryFileContainer
@@ -50,32 +49,3 @@ def write_aasx(
             object_store=object_store,
             file_store=file_store,
         )
-
-
-def upload_aasx(
-    aasx_path: Path,
-    upload_url: str,
-    *,
-    access_token: str,
-    verify: bool | str = True,
-    timeout: float = 30,
-) -> requests.Response:
-    with aasx_path.open("rb") as aasx_file:
-        response = requests.post(
-            upload_url,
-            files={
-                "file": (
-                    aasx_path.name,
-                    aasx_file,
-                    "application/octet-stream",
-                )
-            },
-            headers={
-                "Accept": "application/json",
-                "Authorization": f"Bearer {access_token}",
-            },
-            verify=verify,
-            timeout=timeout,
-        )
-    response.raise_for_status()
-    return response

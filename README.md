@@ -54,7 +54,8 @@ certificate troubleshooting.
 - `dpp_aas/workbook.py` reads the table-shaped workbook data from `data/input`.
 - `dpp_aas/templates.py` fills and normalizes IDTA templates.
 - `dpp_aas/environment.py` assembles the product AAS environment.
-- `dpp_aas/aasx.py` validates, packages assets, and optionally uploads the AASX.
+- `dpp_aas/aasx.py` validates and packages assets into an AASX.
+- `dpp_aas/client.py` provides the single client for the secured BaSyx API.
 - `dpp_aas/pipeline.py` coordinates the complete workflow.
 - `dpp_aas/cli.py` provides the command-line interface.
 
@@ -136,9 +137,8 @@ deployment. The UI is served over HTTP only for local development; place it
 behind HTTPS with a real hostname and certificate in a deployed environment.
 
 The BaSyx repositories and registries are not published directly to the host,
-so the gateway cannot be bypassed. Team-to-team synchronization uses the HTTPS
-gateways and a read credential for the source plus an admin credential for the
-destination.
+so the gateway cannot be bypassed. All programmatic API access uses the same
+`AASClient` and HTTPS gateway.
 
 For production, use a CA-issued certificate, restrict CORS and Keycloak redirect
 origins, store the Keycloak bootstrap secret outside Compose, and manage users
