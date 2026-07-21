@@ -1,0 +1,23 @@
+/*
+ * Brand palette
+ *
+ * Change these variables to reskin the complete viewer. Components use
+ * --brand for primary accents, --brand-dark for hover states, and
+ * --brand-soft for subtle icon backgrounds.
+ */
+:root {
+  --brand: #e86f00;
+  --brand-dark: #b95400;
+  --brand-soft: #fff0e2;
+}
+
+.document-icon,
+.icon-tile {
+  background: var(--brand-soft);
+}
+
+/* Keep the full transparent product render visible inside the hero card. */
+.product-visual img {
+  object-fit: contain;
+  padding: clamp(18px, 3vw, 32px);
+}
