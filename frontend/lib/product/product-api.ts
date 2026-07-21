@@ -63,6 +63,10 @@ export async function getSelectedProduct(): Promise<ProductPassport> {
       ["Product class coded name", "ProductClassifications", 0, "ProductClassCodedName"],
       ["Product class name", "ProductClassifications", 0, "ProductClassName"],
     ]),
+    groupFromElements(
+      "Technical properties",
+      elementAt(technical, "TechnicalPropertyAreas"),
+    ),
     groupFromPaths("Further information", technical, [
       ["Valid date", "FurtherInformation", "ValidDate"],
     ]),
@@ -97,6 +101,7 @@ type AasElement = {
   idShort?: string;
   modelType?: string;
   contentType?: string;
+  displayName?: Array<{ language?: string; text?: string }>;
   submodelElements?: AasElement[];
   value?: unknown;
 };
@@ -188,6 +193,47 @@ function fieldsFromPaths(root: AasElement, paths: ValuePath[]): Field[] {
 function groupFromPaths(title: string, root: AasElement, paths: ValuePath[]): PropertyGroup | undefined {
   const properties = fieldsFromPaths(root, paths);
   return properties.length ? { title, properties } : undefined;
+}
+
+function groupFromElements(
+  title: string,
+  root: AasElement | undefined,
+): PropertyGroup | undefined {
+  if (!root) return undefined;
+  const properties: Field[] = [];
+  collectLeafFields(root, properties);
+  return properties.length ? { title, properties } : undefined;
+}
+
+function collectLeafFields(element: AasElement, fields: Field[]): void {
+  if (Array.isArray(element.value)) {
+    const languageValue = (element.value as Array<{ language?: string; text?: string }>).find(
+      (item) => item.language === "en" && typeof item.text === "string",
+    );
+    if (languageValue?.text) {
+      const value = cleanValue(languageValue.text);
+      if (value) fields.push({ label: elementLabel(element), value });
+      return;
+    }
+    for (const child of element.value as AasElement[]) {
+      if (child && typeof child === "object") collectLeafFields(child, fields);
+    }
+    return;
+  }
+  if (
+    typeof element.value === "string"
+    || typeof element.value === "number"
+    || typeof element.value === "boolean"
+  ) {
+    const value = cleanValue(String(element.value));
+    if (value) fields.push({ label: elementLabel(element), value });
+  }
+}
+
+function elementLabel(element: AasElement): string {
+  return element.displayName?.find(
+    (name) => name.language === "en" && name.text,
+  )?.text ?? element.idShort ?? "Workbook value";
 }
 
 function mapDocuments(handover: AasElement): ProductDocument[] {
