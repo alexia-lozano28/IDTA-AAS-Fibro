@@ -7,6 +7,7 @@ from dpp_aas.security_gateway import (
     GatewayConfig,
     OidcAuthorizer,
     Role,
+    is_public_read_request,
 )
 
 
@@ -70,11 +71,30 @@ class GatewayRoutingTests(unittest.TestCase):
             self.config.upstream_url("/shells?limit=10"),
         )
         self.assertEqual(
+            "http://environment:8081/shells/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXM?level=deep",
+            self.config.upstream_url(
+                "/api/shells/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXM?level=deep"
+            ),
+        )
+        self.assertEqual(
             "http://keycloak:8080/auth/realms/basyx/protocol/openid-connect/auth",
             self.config.upstream_url(
                 "/auth/realms/basyx/protocol/openid-connect/auth"
             ),
         )
+
+    def test_only_instance_level_reads_are_public(self) -> None:
+        shell = "/api/shells/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXM"
+        descriptor = "/registry/aas/shell-descriptors/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXM"
+        for method in ("GET", "HEAD", "OPTIONS"):
+            self.assertTrue(is_public_read_request(method, shell))
+            self.assertTrue(is_public_read_request(method, descriptor))
+        for method in ("POST", "PUT", "PATCH", "DELETE"):
+            self.assertFalse(is_public_read_request(method, shell))
+        self.assertFalse(is_public_read_request("GET", "/api/shells"))
+        self.assertFalse(is_public_read_request("GET", shell + "/submodels"))
+        self.assertFalse(is_public_read_request("GET", "/api/shells/%2Fsubmodels"))
+        self.assertFalse(is_public_read_request("GET", "/api/shells/not.base64url"))
         self.assertEqual(
             "http://aas-registry:8080/shell-descriptors",
             self.config.upstream_url("/registry/aas/shell-descriptors"),
@@ -100,7 +120,7 @@ class DeploymentConfigurationTests(unittest.TestCase):
             properties,
         )
         self.assertIn(
-            "BASYX_EXTERNAL_URL: ${PUBLIC_GATEWAY_URL:-https://localhost:8443}",
+            "BASYX_EXTERNAL_URL: ${PUBLIC_AAS_BASE_URL:-https://localhost:8443}/api",
             compose,
         )
 

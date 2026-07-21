@@ -1,5 +1,14 @@
 name: fibro-aas
 services:
+  dpp-frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: fibro-dpp-frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${DPP_FRONTEND_PORT:-3000}:3000"
+
   mongodb:
     image: mongo:8
     container_name: fibro-aas-mongodb
@@ -34,7 +43,9 @@ services:
       MONGODB_USERNAME: ${MONGODB_ROOT_USERNAME:-basyx}
       MONGODB_PASSWORD: ${MONGODB_ROOT_PASSWORD:-change-me}
       MONGODB_AUTHENTICATION_DATABASE: admin
-      BASYX_EXTERNAL_URL: ${PUBLIC_GATEWAY_URL:-https://localhost:8443}
+      # BaSyx appends /shells/{encoded-id}; descriptors therefore advertise
+      # the intentionally public, read-only /api/shells route.
+      BASYX_EXTERNAL_URL: ${PUBLIC_AAS_BASE_URL:-https://localhost:8443}/api
     volumes:
       - ./config/aas-environment/application.properties:/application/application.properties:ro
 
@@ -162,7 +173,7 @@ services:
       web-ui:
         condition: service_started
     ports:
-      - "127.0.0.1:${WEB_UI_PORT:-3000}:80"
+      - "127.0.0.1:${BASYX_WEB_UI_PORT:-3001}:80"
     volumes:
       - ./security/web-ui-login/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./security/web-ui-login/auto-login.js:/usr/share/nginx/html/auto-login.js:ro

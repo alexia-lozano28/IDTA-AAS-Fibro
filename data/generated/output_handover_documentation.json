@@ -105,6 +105,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "One"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "https://www.fibrort.com/downloads?product=25"
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "6"
             }
           ],
           "semanticIdListElement": {
@@ -979,12 +989,12 @@
                             {
                               "type": "DppValueStatus",
                               "valueType": "xs:string",
-                              "value": "Placeholder"
+                              "value": "Dummy"
                             },
                             {
                               "type": "DppValueStatusNote",
                               "valueType": "xs:string",
-                              "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                              "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
                             }
                           ],
                           "typeValueListElement": "Property",
@@ -1026,28 +1036,14 @@
                                   "value": "OneToMany"
                                 },
                                 {
-                                  "semanticId": {
-                                    "type": "ExternalReference",
-                                    "keys": [
-                                      {
-                                        "type": "GlobalReference",
-                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
-                                      }
-                                    ]
-                                  },
-                                  "type": "ExampleValue",
-                                  "valueType": "xs:string",
-                                  "value": "en"
-                                },
-                                {
                                   "type": "DppValueStatus",
                                   "valueType": "xs:string",
-                                  "value": "Placeholder"
+                                  "value": "Dummy"
                                 },
                                 {
                                   "type": "DppValueStatusNote",
                                   "valueType": "xs:string",
-                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
                                 }
                               ],
                               "valueType": "xs:string",
@@ -1061,80 +1057,7 @@
                                 ]
                               },
                               "modelType": "Property",
-                              "value": "en"
-                            },
-                            {
-                              "displayName": [
-                                {
-                                  "language": "en",
-                                  "text": "en (English)"
-                                },
-                                {
-                                  "language": "de",
-                                  "text": "en (Englisch)"
-                                }
-                              ],
-                              "semanticId": {
-                                "type": "ExternalReference",
-                                "keys": [
-                                  {
-                                    "type": "GlobalReference",
-                                    "value": "0173-1#02-AAN468#008"
-                                  }
-                                ]
-                              },
-                              "qualifiers": [
-                                {
-                                  "semanticId": {
-                                    "type": "ExternalReference",
-                                    "keys": [
-                                      {
-                                        "type": "GlobalReference",
-                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
-                                      }
-                                    ]
-                                  },
-                                  "type": "SMT/Cardinality",
-                                  "valueType": "xs:string",
-                                  "value": "OneToMany"
-                                },
-                                {
-                                  "semanticId": {
-                                    "type": "ExternalReference",
-                                    "keys": [
-                                      {
-                                        "type": "GlobalReference",
-                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
-                                      }
-                                    ]
-                                  },
-                                  "type": "ExampleValue",
-                                  "valueType": "xs:string",
-                                  "value": "en"
-                                },
-                                {
-                                  "type": "DppValueStatus",
-                                  "valueType": "xs:string",
-                                  "value": "Placeholder"
-                                },
-                                {
-                                  "type": "DppValueStatusNote",
-                                  "valueType": "xs:string",
-                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
-                                }
-                              ],
-                              "valueType": "xs:string",
-                              "valueId": {
-                                "type": "ExternalReference",
-                                "keys": [
-                                  {
-                                    "type": "GlobalReference",
-                                    "value": "0173-1#07-AAS045#003"
-                                  }
-                                ]
-                              },
-                              "modelType": "Property",
-                              "value": "de"
+                              "value": "DUMMY — MANDATORY VALUE MISSING: Language (workbook row 42)"
                             }
                           ],
                           "modelType": "SubmodelElementList"
@@ -2596,12 +2519,12 @@
                             {
                               "type": "DppValueStatus",
                               "valueType": "xs:string",
-                              "value": "Placeholder"
+                              "value": "Dummy"
                             },
                             {
                               "type": "DppValueStatusNote",
                               "valueType": "xs:string",
-                              "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                              "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
                             }
                           ],
                           "typeValueListElement": "Property",
@@ -2643,28 +2566,14 @@
                                   "value": "OneToMany"
                                 },
                                 {
-                                  "semanticId": {
-                                    "type": "ExternalReference",
-                                    "keys": [
-                                      {
-                                        "type": "GlobalReference",
-                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
-                                      }
-                                    ]
-                                  },
-                                  "type": "ExampleValue",
-                                  "valueType": "xs:string",
-                                  "value": "en"
-                                },
-                                {
                                   "type": "DppValueStatus",
                                   "valueType": "xs:string",
-                                  "value": "Placeholder"
+                                  "value": "Dummy"
                                 },
                                 {
                                   "type": "DppValueStatusNote",
                                   "valueType": "xs:string",
-                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
                                 }
                               ],
                               "valueType": "xs:string",
@@ -2678,80 +2587,7 @@
                                 ]
                               },
                               "modelType": "Property",
-                              "value": "en"
-                            },
-                            {
-                              "displayName": [
-                                {
-                                  "language": "en",
-                                  "text": "en (English)"
-                                },
-                                {
-                                  "language": "de",
-                                  "text": "en (Englisch)"
-                                }
-                              ],
-                              "semanticId": {
-                                "type": "ExternalReference",
-                                "keys": [
-                                  {
-                                    "type": "GlobalReference",
-                                    "value": "0173-1#02-AAN468#008"
-                                  }
-                                ]
-                              },
-                              "qualifiers": [
-                                {
-                                  "semanticId": {
-                                    "type": "ExternalReference",
-                                    "keys": [
-                                      {
-                                        "type": "GlobalReference",
-                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
-                                      }
-                                    ]
-                                  },
-                                  "type": "SMT/Cardinality",
-                                  "valueType": "xs:string",
-                                  "value": "OneToMany"
-                                },
-                                {
-                                  "semanticId": {
-                                    "type": "ExternalReference",
-                                    "keys": [
-                                      {
-                                        "type": "GlobalReference",
-                                        "value": "https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0"
-                                      }
-                                    ]
-                                  },
-                                  "type": "ExampleValue",
-                                  "valueType": "xs:string",
-                                  "value": "en"
-                                },
-                                {
-                                  "type": "DppValueStatus",
-                                  "valueType": "xs:string",
-                                  "value": "Placeholder"
-                                },
-                                {
-                                  "type": "DppValueStatusNote",
-                                  "valueType": "xs:string",
-                                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
-                                }
-                              ],
-                              "valueType": "xs:string",
-                              "valueId": {
-                                "type": "ExternalReference",
-                                "keys": [
-                                  {
-                                    "type": "GlobalReference",
-                                    "value": "0173-1#07-AAS045#003"
-                                  }
-                                ]
-                              },
-                              "modelType": "Property",
-                              "value": "de"
+                              "value": "DUMMY — MANDATORY VALUE MISSING: Language (workbook row 87)"
                             }
                           ],
                           "modelType": "SubmodelElementList"

@@ -63,8 +63,23 @@ class PipelineIntegrationTests(unittest.TestCase):
             valid_date = _find_element(
                 technical["submodels"][0]["submodelElements"], "ValidDate"
             )
-            self.assertEqual("2026-12-31", valid_date["value"])
-            self.assertTrue(_is_placeholder(valid_date))
+            self.assertIn("DUMMY — MANDATORY VALUE MISSING", valid_date["value"])
+            self.assertTrue(_is_dummy(valid_date))
+
+            expected_technical_values = {
+                "Voltage_Brake": "380-480V /AC",
+                "Permissible_Transport_Load_Horizontal": "2500 kg",
+                "Permissible_Addon_Diameter": "2000 mm",
+                "Permissible_Axial_Loading": "25000 N",
+                "Permissible_Tilting_Moment": "6000 N",
+            }
+            for id_short, expected_value in expected_technical_values.items():
+                self.assertEqual(
+                    expected_value,
+                    _find_element(
+                        technical["submodels"][0]["submodelElements"], id_short
+                    )["value"],
+                )
 
             carbon_elements = carbon["submodels"][0]["submodelElements"]
             self.assertNotIn(
@@ -137,6 +152,14 @@ def _is_placeholder(element: dict) -> bool:
     return any(
         qualifier.get("type") == "DppValueStatus"
         and qualifier.get("value") == "Placeholder"
+        for qualifier in element.get("qualifiers", [])
+    )
+
+
+def _is_dummy(element: dict) -> bool:
+    return any(
+        qualifier.get("type") == "DppValueStatus"
+        and qualifier.get("value") == "Dummy"
         for qualifier in element.get("qualifiers", [])
     )
 

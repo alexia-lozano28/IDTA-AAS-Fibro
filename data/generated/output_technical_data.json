@@ -122,6 +122,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "One"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "General information and ordering/manufacturer information entered in rows 16–21."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "6"
             }
           ],
           "value": [
@@ -227,7 +237,8 @@
                 }
               ],
               "contentType": "image/png",
-              "modelType": "File"
+              "modelType": "File",
+              "value": "logo.png"
             },
             {
               "category": "PARAMETER",
@@ -439,6 +450,16 @@
                   "type": "SMT/Cardinality",
                   "valueType": "xs:string",
                   "value": "ZeroToMany"
+                },
+                {
+                  "type": "WorkbookActualValue",
+                  "valueType": "xs:string",
+                  "value": "4-815-000-3000.2.jpg"
+                },
+                {
+                  "type": "WorkbookSourceRow",
+                  "valueType": "xs:integer",
+                  "value": "21"
                 }
               ],
               "semanticIdListElement": {
@@ -526,7 +547,8 @@
                         }
                       ],
                       "contentType": "image/png",
-                      "modelType": "File"
+                      "modelType": "File",
+                      "value": "4-815-000-3000.2.jpg"
                     },
                     {
                       "idShort": "ImageNote",
@@ -585,7 +607,19 @@
                       ]
                     }
                   ],
-                  "modelType": "SubmodelElementCollection"
+                  "modelType": "SubmodelElementCollection",
+                  "qualifiers": [
+                    {
+                      "type": "WorkbookActualValue",
+                      "valueType": "xs:string",
+                      "value": "ProductImages__00__: product image / CAD preview"
+                    },
+                    {
+                      "type": "WorkbookSourceRow",
+                      "valueType": "xs:integer",
+                      "value": "27"
+                    }
+                  ]
                 }
               ],
               "modelType": "SubmodelElementList"
@@ -640,6 +674,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToMany"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Product classification prototype entered in rows 36–42; ECLASS/HS code to be confirmed."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "7"
             }
           ],
           "orderRelevant": false,
@@ -1025,6 +1069,24 @@
                       "text": "118551@en"
                     }
                   ]
+                },
+                {
+                  "idShort": "ReferenceToTechnicalPropertyArea",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "ReferenceToTechnicalPropertyArea"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table ProductClassifications, row 42."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "\"Automation rotary indexing table / FIBROTOR ER.15\"@en"
                 }
               ],
               "modelType": "SubmodelElementCollection"
@@ -1078,6 +1140,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToMany"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Technical property area: dimensions, accuracy, load data, drive/electrical data and performance data."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "8"
             }
           ],
           "semanticIdListElement": {
@@ -1126,7 +1198,260 @@
                   ]
                 }
               ],
-              "value": [],
+              "value": [
+                {
+                  "idShort": "Table_Top_Diameter",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Table_Top_Diameter"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 55."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "410 mm"
+                },
+                {
+                  "idShort": "Drive_Motor",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Drive_Motor"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 56."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "Standard Brake Motor"
+                },
+                {
+                  "idShort": "Drive_Arrangement",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Drive_Arrangement"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 57."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "142"
+                },
+                {
+                  "idShort": "Division",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Division"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 58."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "04"
+                },
+                {
+                  "idShort": "Indexing_Accuracy",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Indexing_Accuracy"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 59."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "± 20\" arc sec"
+                },
+                {
+                  "idShort": "Axial_Runout",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Axial_Runout"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 60."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "0,03 mm"
+                },
+                {
+                  "idShort": "Concentricity",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Concentricity"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 61."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "0,03 mm"
+                },
+                {
+                  "idShort": "Plane_Parrallism",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Plane_Parrallism"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 62."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "0,06 mm"
+                },
+                {
+                  "idShort": "Voltage_Motor",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Voltage_Motor"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 63."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "230 - 400 V / 50 Hz"
+                },
+                {
+                  "idShort": "Voltage_Brake",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Voltage_Brake"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 64."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "380-480V /AC"
+                },
+                {
+                  "idShort": "Permissible_Transport_Load_Horizontal",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Permissible_Transport_Load_(Horizontal)"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 65."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "2500 kg"
+                },
+                {
+                  "idShort": "Permissible_Addon_Diameter",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Permissible_Addon_Diameter"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 66."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "2000 mm"
+                },
+                {
+                  "idShort": "Permissible_Axial_Loading",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Permissible_Axial_Loading"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 67."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "25000 N"
+                },
+                {
+                  "idShort": "Permissible_Tilting_Moment",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Permissible_Tilting_Moment"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Technical Data, table TechnicalPropertyAreas, row 68."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "6000 N"
+                }
+              ],
               "modelType": "SubmodelElementCollection"
             }
           ],
@@ -1178,6 +1503,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToOne"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Further information entered in rows 90–91."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "9"
             }
           ],
           "value": [
@@ -1187,11 +1522,7 @@
               "displayName": [
                 {
                   "language": "en",
-                  "text": "Validity date"
-                },
-                {
-                  "language": "de",
-                  "text": "Verfallsdatum"
+                  "text": "DUMMY — ValidDate"
                 }
               ],
               "semanticId": {
@@ -1232,17 +1563,23 @@
                 {
                   "type": "DppValueStatus",
                   "valueType": "xs:string",
-                  "value": "Placeholder"
+                  "value": "Dummy"
                 },
                 {
                   "type": "DppValueStatusNote",
                   "valueType": "xs:string",
-                  "value": "No actual value was supplied in the DPP workbook. This value comes from the workbook's Example Value column and is not authoritative product data."
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
                 }
               ],
-              "valueType": "xs:date",
+              "valueType": "xs:string",
               "modelType": "Property",
-              "value": "2026-12-31"
+              "value": "DUMMY — MANDATORY VALUE MISSING: ValidDate (workbook row 108)",
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
             }
           ],
           "modelType": "SubmodelElementCollection"
@@ -1293,6 +1630,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToMany"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Application: automation rotary indexing table / workpiece carrier in horizontal or other approved positions."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "10"
             }
           ],
           "semanticIdListElement": {

@@ -1,6 +1,8 @@
 import ast
 import copy
 import json
+import mimetypes
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date
@@ -14,28 +16,18 @@ from .workbook import (
     MissingField,
     SheetData,
     TableRecord,
-    is_empty,
     normalize_name,
 )
 
 
 COLLECTION_MODELS = {"SubmodelElementCollection", "SubmodelElementList"}
 DISCLOSURE_TYPES = {"DppValueStatus", "DppValueStatusNote"}
-PLACEHOLDER_NOTE = (
-    "No actual value was supplied in the DPP workbook. This value comes from "
-    "the workbook's Example Value column and is not authoritative product data."
+DUMMY_VALUE_PREFIX = "DUMMY — MANDATORY VALUE MISSING"
+DUMMY_NOTE = (
+    "The DPP workbook marks this field as mandatory but supplies no Actual "
+    "Value. This conspicuous dummy is not authoritative product data and must "
+    "be replaced before release."
 )
-UNSAFE_EXAMPLE_PREFIXES = (
-    "see section",
-    "list containing",
-    "collection instance",
-    "nested ",
-    "subsection",
-    "sub-collection",
-    "sub-list",
-)
-
-
 @dataclass(frozen=True)
 class _BindingContext:
     document_index: int | None = None
@@ -46,11 +38,20 @@ class _TemplateBinder:
         self.sheet = sheet
         self.warnings: list[str] = []
         self.missing: list[MissingField] = []
+        self.dummied_rows: set[int] = set()
+        self.bound_rows: set[int] = set()
 
     def bind(self, elements: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        return self._bind_elements(
+        bound = self._bind_elements(
             elements, self.sheet.root_table, _BindingContext(), ()
         )
+        unmapped = self._unmapped_actual_collection()
+        if unmapped:
+            bound.append(unmapped)
+        unresolved = self._unresolved_mandatory_collection()
+        if unresolved:
+            bound.append(unresolved)
+        return bound
 
     def _bind_elements(
         self,
@@ -58,6 +59,8 @@ class _TemplateBinder:
         scope: TableRecord,
         context: _BindingContext,
         path: tuple[str, ...],
+        *,
+        append_unmapped: bool = True,
     ) -> list[dict[str, Any]]:
         bound: list[dict[str, Any]] = []
         for element in elements:
@@ -68,6 +71,8 @@ class _TemplateBinder:
             )
             if result is not None:
                 bound.append(result)
+        if append_unmapped:
+            self._append_unmapped_fields(bound, scope)
         return bound
 
     def _bind_element(
@@ -86,11 +91,29 @@ class _TemplateBinder:
         if model_type not in COLLECTION_MODELS:
             return self._bind_leaf(element, record, current_path)
 
-        if record is not None and record.optional and not record.has_actual_value:
+        if (
+            record is not None
+            and record.optional
+            and not record.has_actual_value
+            and not (
+                not id_short
+                and any(
+                    candidate.has_actual_value
+                    for candidate in scope.fields
+                    if candidate is not record
+                )
+            )
+            and not self._element_has_workbook_data(element, context)
+        ):
             return None
 
         if model_type == "SubmodelElementList":
-            return self._bind_list(element, record, scope, context, current_path)
+            bound_list = self._bind_list(
+                element, record, scope, context, current_path
+            )
+            if bound_list is not None and record is not None and record.has_actual_value:
+                _add_workbook_container_value(bound_list, record)
+            return bound_list
 
         child_scope = self._collection_scope(element, scope, context)
         nested = element.get("value")
@@ -100,6 +123,8 @@ class _TemplateBinder:
             context,
             current_path,
         )
+        if record is not None and record.has_actual_value:
+            _add_workbook_container_value(element, record)
         return element
 
     def _bind_list(
@@ -128,6 +153,7 @@ class _TemplateBinder:
                     document_scope,
                     _BindingContext(document_index=index),
                     path,
+                    append_unmapped=False,
                 )
             ]
             return element
@@ -140,14 +166,20 @@ class _TemplateBinder:
                 if not self._list_item_is_active(item_scope, list_id):
                     continue
                 items.extend(
-                    self._bind_elements(prototypes, item_scope, context, path)
+                    self._bind_elements(
+                        prototypes,
+                        item_scope,
+                        context,
+                        path,
+                        append_unmapped=False,
+                    )
                 )
             element["value"] = items
             return element
 
         if self._is_primitive_list(prototypes):
             item_record = self._primitive_list_record(record, scope, list_id)
-            values, used_example = self._primitive_values(item_record)
+            values, used_dummy = self._primitive_values(item_record)
             if values is None:
                 return None if record is None or record.optional else element
 
@@ -161,12 +193,14 @@ class _TemplateBinder:
                     record_override=_with_actual_value(item_record, value),
                 )
                 if item is not None:
-                    if used_example:
-                        _add_placeholder_qualifiers(item, PLACEHOLDER_NOTE)
+                    if used_dummy:
+                        _add_placeholder_qualifiers(
+                            item, DUMMY_NOTE, status="Dummy"
+                        )
                     items.append(item)
             element["value"] = items
-            if used_example:
-                _add_placeholder_qualifiers(element, PLACEHOLDER_NOTE)
+            if used_dummy:
+                _add_placeholder_qualifiers(element, DUMMY_NOTE, status="Dummy")
             return element
 
         element["value"] = self._bind_elements(prototypes, scope, context, path)
@@ -183,7 +217,6 @@ class _TemplateBinder:
             return None
         if record.has_actual_value:
             value = record.actual_value
-            used_example = False
             if (
                 isinstance(value, date)
                 and element.get("modelType") == "Property"
@@ -196,19 +229,10 @@ class _TemplateBinder:
                 )
         elif record.optional:
             return None
-        elif record.mandatory and _safe_example(record.example_value):
-            value = _normalize_example(record.example_value)
-            used_example = True
+        elif record.mandatory:
+            self.dummied_rows.add(record.row_number)
+            return _dummy_element(element, record)
         else:
-            self.missing.append(
-                MissingField(
-                    sheet_name=record.sheet_name,
-                    table_name=record.table_name,
-                    row_number=record.row_number,
-                    id_short=record.id_short,
-                    reason="no datatype-valid Example Value is available",
-                )
-            )
             return None
 
         try:
@@ -219,25 +243,120 @@ class _TemplateBinder:
                 )
                 return None
         except ValueError as exc:
-            source = "example" if used_example else "actual"
             self.warnings.append(
-                f"{'.'.join(path) or record.id_short}: invalid {source} value: {exc}"
+                f"{'.'.join(path) or record.id_short}: invalid actual value: {exc}"
             )
-            if used_example:
-                self.missing.append(
-                    MissingField(
-                        sheet_name=record.sheet_name,
-                        table_name=record.table_name,
-                        row_number=record.row_number,
-                        id_short=record.id_short,
-                        reason=f"Example Value is invalid for the template datatype: {exc}",
-                    )
-                )
             return None
 
-        if used_example:
-            _add_placeholder_qualifiers(element, PLACEHOLDER_NOTE)
+        self.bound_rows.add(record.row_number)
         return element
+
+    def _append_unmapped_fields(
+        self, bound: list[dict[str, Any]], scope: TableRecord
+    ) -> None:
+        present = {
+            normalize_name(str(element.get("idShort", "")))
+            for element in bound
+            if element.get("idShort")
+        }
+        for record in scope.fields:
+            if not _is_leaf_field(record) or normalize_name(record.id_short) in present:
+                continue
+            if not record.has_actual_value and not record.mandatory:
+                continue
+            element = _element_for_record(record)
+            if record.has_actual_value:
+                try:
+                    if not _fill_element_value(element, record.actual_value):
+                        element = _fallback_property(record)
+                except ValueError as exc:
+                    self.warnings.append(
+                        f"{record.id_short}: preserved workbook value as text because "
+                        f"it is invalid for {record.field_type}: {exc}"
+                    )
+                    element = _fallback_property(record)
+                self.bound_rows.add(record.row_number)
+            else:
+                self.dummied_rows.add(record.row_number)
+                element = _dummy_element(element, record)
+            bound.append(element)
+            present.add(normalize_name(record.id_short))
+
+    def _unmapped_actual_collection(self) -> dict[str, Any] | None:
+        unmapped = [
+            record
+            for table in self.sheet.tables
+            for record in table.fields
+            if record.has_actual_value
+            and _is_leaf_field(record)
+            and record.row_number not in self.bound_rows
+        ]
+        if not unmapped:
+            return None
+        values = []
+        for record in unmapped:
+            element = _element_for_record(record)
+            try:
+                if not _fill_element_value(element, record.actual_value):
+                    element = _fallback_property(record)
+            except ValueError:
+                element = _fallback_property(record)
+            element["idShort"] = (
+                f"{_valid_id_short(record.id_short)}_WorkbookRow{record.row_number}"
+            )
+            values.append(element)
+            self.bound_rows.add(record.row_number)
+        return {
+            "idShort": "UnmappedWorkbookValues",
+            "modelType": "SubmodelElementCollection",
+            "displayName": [
+                {
+                    "language": "en",
+                    "text": "Populated workbook values without a template path",
+                }
+            ],
+            "description": [
+                {
+                    "language": "en",
+                    "text": (
+                        "Values preserved from populated workbook rows that could "
+                        "not be placed unambiguously in the IDTA template."
+                    ),
+                }
+            ],
+            "value": values,
+        }
+
+    def _unresolved_mandatory_collection(self) -> dict[str, Any] | None:
+        unresolved = [
+            record
+            for table in self.sheet.tables
+            for record in table.fields
+            if record.mandatory
+            and not record.has_actual_value
+            and _is_leaf_field(record)
+            and record.row_number not in self.dummied_rows
+        ]
+        if not unresolved:
+            return None
+        values = []
+        for record in unresolved:
+            self.dummied_rows.add(record.row_number)
+            dummy = _dummy_element(_element_for_record(record), record)
+            dummy["idShort"] = f"DUMMY_{_valid_id_short(record.id_short)}_Row{record.row_number}"
+            values.append(dummy)
+        return {
+            "idShort": "UnresolvedMandatoryWorkbookValues",
+            "modelType": "SubmodelElementCollection",
+            "displayName": [
+                {
+                    "language": "en",
+                    "text": "DUMMY values for mandatory workbook fields",
+                }
+            ],
+            "description": [{"language": "en", "text": DUMMY_NOTE}],
+            "value": values,
+        }
 
     def _field_for_element(
         self, scope: TableRecord, element: dict[str, Any]
@@ -246,6 +365,8 @@ class _TemplateBinder:
         if id_short:
             return scope.field(id_short)
         if len(scope.fields) == 1:
+            return scope.fields[0]
+        if scope.fields and not _is_leaf_field(scope.fields[0]):
             return scope.fields[0]
         return None
 
@@ -320,12 +441,13 @@ class _TemplateBinder:
             return None, False
         if record.has_actual_value:
             raw_value = record.actual_value
-            used_example = False
+            used_dummy = False
         elif record.optional:
             return None, False
-        elif record.mandatory and _safe_example(record.example_value):
-            raw_value = record.example_value
-            used_example = True
+        elif record.mandatory:
+            raw_value = _dummy_value(record)
+            used_dummy = True
+            self.dummied_rows.add(record.row_number)
         else:
             self.missing.append(
                 MissingField(
@@ -333,7 +455,7 @@ class _TemplateBinder:
                     table_name=record.table_name,
                     row_number=record.row_number,
                     id_short=record.id_short,
-                    reason="no datatype-valid Example Value is available",
+                    reason="no Actual Value and no recognized obligation",
                 )
             )
             return None, False
@@ -345,7 +467,7 @@ class _TemplateBinder:
                 parsed = raw_value
         else:
             parsed = raw_value
-        return (list(parsed) if isinstance(parsed, (list, tuple)) else [parsed]), used_example
+        return (list(parsed) if isinstance(parsed, (list, tuple)) else [parsed]), used_dummy
 
     @staticmethod
     def _is_primitive_list(prototypes: list[dict[str, Any]]) -> bool:
@@ -357,6 +479,19 @@ class _TemplateBinder:
     def _first_named_table(self, name: str) -> TableRecord | None:
         tables = self.sheet.named_tables(name)
         return tables[0] if tables else None
+
+    def _element_has_workbook_data(
+        self, element: dict[str, Any], context: _BindingContext
+    ) -> bool:
+        id_short = element.get("idShort")
+        if not id_short:
+            return False
+        tables = self._select_tables(self.sheet.named_tables(id_short), context)
+        return any(
+            record.has_actual_value
+            for table in tables
+            for record in table.fields
+        )
 
 
 def instantiate_template(
@@ -444,10 +579,10 @@ def clear_unavailable_local_files(
             if not _is_remote_reference(value):
                 local_path = asset_dir / value.lstrip("/")
                 if not local_path.is_file():
-                    element.pop("value", None)
                     warnings.append(
-                        f"Cleared unavailable supplementary file {value!r} "
-                        f"from {element.get('idShort')!r}"
+                        f"Retained workbook file reference {value!r} on "
+                        f"{element.get('idShort')!r}, but no supplementary file "
+                        "was available to package"
                     )
 
         nested = element.get("value")
@@ -497,22 +632,120 @@ def _fill_element_value(element: dict[str, Any], value: Any) -> bool:
     return False
 
 
-def _safe_example(value: Any) -> bool:
-    if is_empty(value):
-        return False
-    if not isinstance(value, str):
-        return True
-    normalized = value.strip().strip('"').lower()
-    return not normalized.startswith(UNSAFE_EXAMPLE_PREFIXES)
+def _is_leaf_field(record: FieldRecord) -> bool:
+    field_type = (record.field_type or "").lower()
+    return not any(
+        token in field_type
+        for token in ("submodelelementcollection", "submodelelementlist")
+    )
 
 
-def _normalize_example(value: Any) -> Any:
-    if not isinstance(value, str):
-        return value
-    stripped = value.strip()
-    if len(stripped) >= 2 and stripped[0] == stripped[-1] == '"':
-        return stripped[1:-1]
-    return value
+def _element_for_record(record: FieldRecord) -> dict[str, Any]:
+    field_type = (record.field_type or "").lower()
+    common: dict[str, Any] = {
+        "idShort": _valid_id_short(record.id_short),
+        "displayName": [{"language": "en", "text": record.id_short}],
+        "description": [
+            {
+                "language": "en",
+                "text": (
+                    f"Workbook field from worksheet {record.sheet_name}, "
+                    f"table {record.table_name}, row {record.row_number}."
+                ),
+            }
+        ],
+    }
+    if "multilanguage" in field_type:
+        return {**common, "modelType": "MultiLanguageProperty"}
+    if field_type.strip() == "file":
+        content_type = "application/octet-stream"
+        if record.has_actual_value:
+            content_type = (
+                mimetypes.guess_type(str(record.actual_value))[0] or content_type
+            )
+        return {**common, "modelType": "File", "contentType": content_type}
+    if "range" in field_type:
+        return {**common, "modelType": "Range", "valueType": "xs:string"}
+    value_type = "xs:string"
+    if "date" in field_type:
+        value_type = "xs:date"
+    elif "boolean" in field_type:
+        value_type = "xs:boolean"
+    elif any(token in field_type for token in ("decimal", "double", "float")):
+        value_type = "xs:decimal"
+    elif any(token in field_type for token in ("integer", "int", "long")):
+        value_type = "xs:integer"
+    return {**common, "modelType": "Property", "valueType": value_type}
+
+
+def _fallback_property(record: FieldRecord) -> dict[str, Any]:
+    element = _element_for_record(record)
+    element["modelType"] = "Property"
+    element["valueType"] = "xs:string"
+    element.pop("contentType", None)
+    element["value"] = str(record.actual_value).strip()
+    return element
+
+
+def _dummy_value(record: FieldRecord) -> str:
+    return f"{DUMMY_VALUE_PREFIX}: {record.id_short} (workbook row {record.row_number})"
+
+
+def _dummy_element(
+    element: dict[str, Any], record: FieldRecord
+) -> dict[str, Any]:
+    _clear_template_payload(element)
+    if element.get("modelType") not in {"Property", "MultiLanguageProperty"}:
+        element = _element_for_record(record)
+    if element.get("modelType") == "MultiLanguageProperty":
+        element["value"] = [{"language": "en", "text": _dummy_value(record)}]
+    else:
+        element["modelType"] = "Property"
+        element["valueType"] = "xs:string"
+        element.pop("contentType", None)
+        element["value"] = _dummy_value(record)
+    element["displayName"] = [
+        {
+            "language": "en",
+            "text": f"DUMMY — {record.id_short}"[:64],
+        }
+    ]
+    element["description"] = [{"language": "en", "text": DUMMY_NOTE}]
+    _add_placeholder_qualifiers(element, DUMMY_NOTE, status="Dummy")
+    return element
+
+
+def _valid_id_short(value: str) -> str:
+    sanitized = re.sub(r"[^A-Za-z0-9_]", "_", value.strip())
+    sanitized = re.sub(r"_+", "_", sanitized).strip("_") or "WorkbookField"
+    if not sanitized[0].isalpha():
+        sanitized = f"Field_{sanitized}"
+    return sanitized
+
+
+def _add_workbook_container_value(
+    element: dict[str, Any], record: FieldRecord
+) -> None:
+    qualifiers = [
+        qualifier
+        for qualifier in element.get("qualifiers", [])
+        if qualifier.get("type") not in {"WorkbookActualValue", "WorkbookSourceRow"}
+    ]
+    qualifiers.extend(
+        [
+            {
+                "type": "WorkbookActualValue",
+                "valueType": "xs:string",
+                "value": str(record.actual_value),
+            },
+            {
+                "type": "WorkbookSourceRow",
+                "valueType": "xs:integer",
+                "value": str(record.row_number),
+            },
+        ]
+    )
+    element["qualifiers"] = qualifiers
 
 
 def _clear_template_payload(element: dict[str, Any]) -> None:
@@ -528,6 +761,10 @@ def _add_placeholder_qualifiers(
         qualifier
         for qualifier in element.get("qualifiers", [])
         if qualifier.get("type") not in DISCLOSURE_TYPES
+        and not (
+            status == "Dummy"
+            and str(qualifier.get("type", "")).endswith("ExampleValue")
+        )
     ]
     qualifiers.extend(
         [
@@ -572,8 +809,9 @@ def _singularize(value: str) -> str:
 def _looks_like_file_reference(value: str) -> bool:
     if _is_remote_reference(value) or value.startswith("/"):
         return True
-    suffix = Path(value).suffix
-    return bool(suffix and len(suffix) > 1 and "\n" not in value)
+    if "\n" in value or mimetypes.guess_type(value)[0] is None:
+        return False
+    return bool(Path(value).suffix)
 
 
 def _is_remote_reference(value: str) -> bool:

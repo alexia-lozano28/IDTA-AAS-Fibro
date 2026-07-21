@@ -112,6 +112,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToMany"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Maintenance interval entry to be completed after review of MBA-DE-03-01 / MBA-EN-03-01."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "7"
             }
           ],
           "value": [
@@ -142,6 +152,16 @@
                   "type": "SMT/Cardinality",
                   "valueType": "xs:string",
                   "value": "ZeroToOne"
+                },
+                {
+                  "type": "WorkbookActualValue",
+                  "valueType": "xs:string",
+                  "value": "Basic maintenance information for ER.15 example product."
+                },
+                {
+                  "type": "WorkbookSourceRow",
+                  "valueType": "xs:integer",
+                  "value": "16"
                 }
               ],
               "value": [
@@ -279,6 +299,16 @@
                       "type": "SMT/Cardinality",
                       "valueType": "xs:string",
                       "value": "ZeroToOne"
+                    },
+                    {
+                      "type": "WorkbookActualValue",
+                      "valueType": "xs:string",
+                      "value": "Interval specification to be confirmed from operating manual."
+                    },
+                    {
+                      "type": "WorkbookSourceRow",
+                      "valueType": "xs:integer",
+                      "value": "27"
                     }
                   ],
                   "value": [],
@@ -311,6 +341,16 @@
                       "type": "SMT/Cardinality",
                       "valueType": "xs:string",
                       "value": "ZeroToOne"
+                    },
+                    {
+                      "type": "WorkbookActualValue",
+                      "valueType": "xs:string",
+                      "value": "Alarm values not defined for prototype."
+                    },
+                    {
+                      "type": "WorkbookSourceRow",
+                      "valueType": "xs:integer",
+                      "value": "28"
                     }
                   ],
                   "value": [],
@@ -380,6 +420,16 @@
                       "type": "SMT/Cardinality",
                       "valueType": "xs:string",
                       "value": "ZeroToMany"
+                    },
+                    {
+                      "type": "WorkbookActualValue",
+                      "valueType": "xs:string",
+                      "value": "Contact: Fibro Rundtische Service / internal service contact to be confirmed."
+                    },
+                    {
+                      "type": "WorkbookSourceRow",
+                      "valueType": "xs:integer",
+                      "value": "31"
                     }
                   ],
                   "value": [],
@@ -421,6 +471,24 @@
                       "text": "\"Before maintenance, follow the operating manual and machine safety procedures; disconnect energy sources and secure against restart where applicable.\"@en"
                     }
                   ]
+                },
+                {
+                  "idShort": "FlowChartOfMaintenanceSteps",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "FlowChartOfMaintenanceSteps"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Maintenance Instructions, table BasicMaintenanceInformation, row 29."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "Maintenance flowchart not available for prototype."
                 }
               ],
               "modelType": "SubmodelElementCollection"
@@ -452,6 +520,16 @@
                   "type": "SMT/Cardinality",
                   "valueType": "xs:string",
                   "value": "ZeroToOne"
+                },
+                {
+                  "type": "WorkbookActualValue",
+                  "valueType": "xs:string",
+                  "value": "Maintenance technician requirements to be confirmed from operating manual."
+                },
+                {
+                  "type": "WorkbookSourceRow",
+                  "valueType": "xs:integer",
+                  "value": "17"
                 }
               ],
               "value": [],
@@ -484,6 +562,16 @@
                   "type": "SMT/Cardinality",
                   "valueType": "xs:string",
                   "value": "ZeroToOne"
+                },
+                {
+                  "type": "WorkbookActualValue",
+                  "valueType": "xs:string",
+                  "value": "Maintenance steps to be confirmed from operating manual."
+                },
+                {
+                  "type": "WorkbookSourceRow",
+                  "valueType": "xs:integer",
+                  "value": "18"
                 }
               ],
               "value": [],
@@ -519,6 +607,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToOne"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Tool list to be taken from operating manual; not finalized in prototype."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "8"
             }
           ],
           "orderRelevant": true,
@@ -585,6 +683,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToOne"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Consumables/lubrication information to be taken from operating manual; not finalized in prototype."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "9"
             }
           ],
           "typeValueListElement": "SubmodelElementCollection",
@@ -650,6 +758,16 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "ZeroToOne"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Spare parts list to be linked from service/spare parts documentation if available."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "10"
             }
           ],
           "typeValueListElement": "SubmodelElementCollection",
@@ -687,6 +805,282 @@
             }
           ],
           "modelType": "SubmodelElementList"
+        },
+        {
+          "idShort": "UnmappedWorkbookValues",
+          "modelType": "SubmodelElementCollection",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Populated workbook values without a template path"
+            }
+          ],
+          "description": [
+            {
+              "language": "en",
+              "text": "Values preserved from populated workbook rows that could not be placed unambiguously in the IDTA template."
+            }
+          ],
+          "value": [
+            {
+              "idShort": "MaintenanceInstructionsForSpecificInterval_00_WorkbookRow7",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "MaintenanceInstructionsForSpecificInterval__00__"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructions, row 7."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Maintenance interval entry to be completed after review of MBA-DE-03-01 / MBA-EN-03-01."
+            },
+            {
+              "idShort": "MaintenanceToolList_WorkbookRow8",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "MaintenanceToolList"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructions, row 8."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Tool list to be taken from operating manual; not finalized in prototype."
+            },
+            {
+              "idShort": "MaintenanceConsumablesList_WorkbookRow9",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "MaintenanceConsumablesList"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructions, row 9."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Consumables/lubrication information to be taken from operating manual; not finalized in prototype."
+            },
+            {
+              "idShort": "MaintenanceSparePartList_WorkbookRow10",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "MaintenanceSparePartList"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructions, row 10."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Spare parts list to be linked from service/spare parts documentation if available."
+            },
+            {
+              "idShort": "BasicMaintenanceInformation_WorkbookRow16",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "BasicMaintenanceInformation"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructionsForSpecificInterval__00__, row 16."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Basic maintenance information for ER.15 example product."
+            },
+            {
+              "idShort": "MaintenanceTechnicians_WorkbookRow17",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "MaintenanceTechnicians"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructionsForSpecificInterval__00__, row 17."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Maintenance technician requirements to be confirmed from operating manual."
+            },
+            {
+              "idShort": "ListMaintenanceSteps_WorkbookRow18",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "ListMaintenanceSteps"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table MaintenanceInstructionsForSpecificInterval__00__, row 18."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Maintenance steps to be confirmed from operating manual."
+            },
+            {
+              "idShort": "IntervalSpecification_WorkbookRow27",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "IntervalSpecification"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table BasicMaintenanceInformation, row 27."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Interval specification to be confirmed from operating manual."
+            },
+            {
+              "idShort": "AlarmValues_WorkbookRow28",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "AlarmValues"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table BasicMaintenanceInformation, row 28."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Alarm values not defined for prototype."
+            },
+            {
+              "idShort": "ContactForMaintenanceAuthorization_WorkbookRow31",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "ContactForMaintenanceAuthorization"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Maintenance Instructions, table BasicMaintenanceInformation, row 31."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "Contact: Fibro Rundtische Service / internal service contact to be confirmed."
+            }
+          ]
+        },
+        {
+          "idShort": "UnresolvedMandatoryWorkbookValues",
+          "modelType": "SubmodelElementCollection",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "DUMMY values for mandatory workbook fields"
+            }
+          ],
+          "description": [
+            {
+              "language": "en",
+              "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+            }
+          ],
+          "value": [
+            {
+              "idShort": "DUMMY_ValueTotalEstimatedWorkingTime_Row113",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "DUMMY — ValueTotalEstimatedWorkingTime"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "DUMMY — MANDATORY VALUE MISSING: ValueTotalEstimatedWorkingTime (workbook row 113)",
+              "qualifiers": [
+                {
+                  "type": "DppValueStatus",
+                  "valueType": "xs:string",
+                  "value": "Dummy"
+                },
+                {
+                  "type": "DppValueStatusNote",
+                  "valueType": "xs:string",
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
+            },
+            {
+              "idShort": "DUMMY_UnitValueTotalEstimatedWorkingTime_Row114",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "DUMMY — UnitValueTotalEstimatedWorkingTime"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "DUMMY — MANDATORY VALUE MISSING: UnitValueTotalEstimatedWorkingTime (workbook row 114)",
+              "qualifiers": [
+                {
+                  "type": "DppValueStatus",
+                  "valueType": "xs:string",
+                  "value": "Dummy"
+                },
+                {
+                  "type": "DppValueStatusNote",
+                  "valueType": "xs:string",
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
+            }
+          ]
         }
       ],
       "modelType": "Submodel"

@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import ssl
+import string
 from dataclasses import dataclass
 from enum import Enum
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -14,6 +15,7 @@ from jwt import PyJWKClient
 
 
 READ_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
+BASE64URL_CHARACTERS = frozenset(string.ascii_letters + string.digits + "-_")
 HOP_BY_HOP_HEADERS = frozenset(
     {
         "connection",
@@ -121,7 +123,25 @@ class GatewayConfig:
             if request_path == prefix or request_path.startswith(prefix + "/"):
                 suffix = request_path[len(prefix) :] or "/"
                 return upstream.rstrip("/") + suffix
+        if parsed.path.startswith("/api/shells/"):
+            return self.environment_upstream.rstrip("/") + request_path[4:]
         return self.environment_upstream.rstrip("/") + request_path
+
+
+def is_public_read_request(method: str, request_path: str) -> bool:
+    """Return true only for the two instance-level distributed-read routes."""
+    if method.upper() not in READ_METHODS:
+        return False
+    path = urlsplit(request_path).path
+    public_prefixes = (
+        "/api/shells/",
+        "/registry/aas/shell-descriptors/",
+    )
+    for prefix in public_prefixes:
+        identifier = path[len(prefix) :] if path.startswith(prefix) else ""
+        if identifier and all(character in BASE64URL_CHARACTERS for character in identifier):
+            return True
+    return False
 
 
 class SecurityGatewayHandler(BaseHTTPRequestHandler):
@@ -159,6 +179,10 @@ class SecurityGatewayHandler(BaseHTTPRequestHandler):
             return
 
         if parsed.path == "/auth" or parsed.path.startswith("/auth/"):
+            self._proxy_request(None)
+            return
+
+        if is_public_read_request(self.command, self.path):
             self._proxy_request(None)
             return
 

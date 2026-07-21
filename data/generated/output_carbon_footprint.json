@@ -96,6 +96,16 @@
               "value": "One"
             },
             {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Prototype gap: Product Carbon Footprint is not yet calculated for this example product."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "6"
+            },
+            {
               "type": "DppValueStatus",
               "valueType": "xs:string",
               "value": "Placeholder"
@@ -180,6 +190,16 @@
                       "type": "SMT/Cardinality",
                       "valueType": "xs:string",
                       "value": "One"
+                    },
+                    {
+                      "type": "WorkbookActualValue",
+                      "valueType": "xs:string",
+                      "value": "No PCF calculation method selected yet; possible future method: ISO 14067 / GHG Protocol Product Standard."
+                    },
+                    {
+                      "type": "WorkbookSourceRow",
+                      "valueType": "xs:integer",
+                      "value": "15"
                     }
                   ],
                   "semanticIdListElement": {
@@ -517,7 +537,92 @@
                     }
                   ],
                   "modelType": "SubmodelElementCollection",
-                  "value": []
+                  "value": [
+                    {
+                      "idShort": "PcfCO2eq",
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "PcfCO2eq"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "Workbook field from worksheet Carbon Footprint, table ProductCarbonFootprint, row 16."
+                        }
+                      ],
+                      "modelType": "Property",
+                      "valueType": "xs:decimal",
+                      "value": "0.0",
+                      "qualifiers": [
+                        {
+                          "type": "DppValueStatus",
+                          "valueType": "xs:string",
+                          "value": "Placeholder"
+                        },
+                        {
+                          "type": "DppValueStatusNote",
+                          "valueType": "xs:string",
+                          "value": "This CO2-equivalent value is a placeholder until a verified PCF calculation is available."
+                        }
+                      ]
+                    },
+                    {
+                      "idShort": "ReferenceImpactUnitForCalculation",
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "ReferenceImpactUnitForCalculation"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "Workbook field from worksheet Carbon Footprint, table ProductCarbonFootprint, row 17."
+                        }
+                      ],
+                      "modelType": "Property",
+                      "valueType": "xs:string",
+                      "value": "1 piece"
+                    },
+                    {
+                      "idShort": "QuantityOfMeasureForCalculation",
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "QuantityOfMeasureForCalculation"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "Workbook field from worksheet Carbon Footprint, table ProductCarbonFootprint, row 18."
+                        }
+                      ],
+                      "modelType": "Property",
+                      "valueType": "xs:decimal",
+                      "value": "1"
+                    },
+                    {
+                      "idShort": "PublicationDate",
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "PublicationDate"
+                        }
+                      ],
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "Workbook field from worksheet Carbon Footprint, table ProductCarbonFootprint, row 22."
+                        }
+                      ],
+                      "modelType": "Property",
+                      "valueType": "xs:date",
+                      "value": "2026-06-11"
+                    }
+                  ]
                 },
                 {
                   "category": "PARAMETER",
@@ -559,10 +664,160 @@
                   "value": "2026-06-11T12:00:00"
                 }
               ],
-              "modelType": "SubmodelElementCollection"
+              "modelType": "SubmodelElementCollection",
+              "qualifiers": [
+                {
+                  "type": "WorkbookActualValue",
+                  "valueType": "xs:string",
+                  "value": "ProductCarbonFootprint__00__: placeholder entry; PCF methodology/value to be defined in future project phase."
+                },
+                {
+                  "type": "WorkbookSourceRow",
+                  "valueType": "xs:integer",
+                  "value": "14"
+                }
+              ]
             }
           ],
           "modelType": "SubmodelElementList"
+        },
+        {
+          "idShort": "UnresolvedMandatoryWorkbookValues",
+          "modelType": "SubmodelElementCollection",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "DUMMY values for mandatory workbook fields"
+            }
+          ],
+          "description": [
+            {
+              "language": "en",
+              "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+            }
+          ],
+          "value": [
+            {
+              "idShort": "DUMMY_PcfRuleOperator_Row51",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "DUMMY — PcfRuleOperator"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "DUMMY — MANDATORY VALUE MISSING: PcfRuleOperator (workbook row 51)",
+              "qualifiers": [
+                {
+                  "type": "DppValueStatus",
+                  "valueType": "xs:string",
+                  "value": "Dummy"
+                },
+                {
+                  "type": "DppValueStatusNote",
+                  "valueType": "xs:string",
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
+            },
+            {
+              "idShort": "DUMMY_PcfRuleName_Row52",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "DUMMY — PcfRuleName"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "DUMMY — MANDATORY VALUE MISSING: PcfRuleName (workbook row 52)",
+              "qualifiers": [
+                {
+                  "type": "DppValueStatus",
+                  "valueType": "xs:string",
+                  "value": "Dummy"
+                },
+                {
+                  "type": "DppValueStatusNote",
+                  "valueType": "xs:string",
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
+            },
+            {
+              "idShort": "DUMMY_PcfApiEndpoint_Row60",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "DUMMY — PcfApiEndpoint"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "DUMMY — MANDATORY VALUE MISSING: PcfApiEndpoint (workbook row 60)",
+              "qualifiers": [
+                {
+                  "type": "DppValueStatus",
+                  "valueType": "xs:string",
+                  "value": "Dummy"
+                },
+                {
+                  "type": "DppValueStatusNote",
+                  "valueType": "xs:string",
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
+            },
+            {
+              "idShort": "DUMMY_PcfApiQuery_Row61",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "DUMMY — PcfApiQuery"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "DUMMY — MANDATORY VALUE MISSING: PcfApiQuery (workbook row 61)",
+              "qualifiers": [
+                {
+                  "type": "DppValueStatus",
+                  "valueType": "xs:string",
+                  "value": "Dummy"
+                },
+                {
+                  "type": "DppValueStatusNote",
+                  "valueType": "xs:string",
+                  "value": "The DPP workbook marks this field as mandatory but supplies no Actual Value. This conspicuous dummy is not authoritative product data and must be replaced before release."
+                }
+              ]
+            }
+          ]
         }
       ],
       "modelType": "Submodel"

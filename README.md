@@ -1,8 +1,44 @@
-# DPP AAS Generator
+# FIBRO Digital Product Passport
 
-This project converts the FIBROTOR Digital Product Passport workbook into
-IDTA-based submodel JSON files, one combined AAS environment, and an AASX
-package.
+This project contains a public Digital Product Passport viewer for the FIBROTOR
+ER.15, an AAS generator, and a secured Eclipse BaSyx infrastructure.
+
+## DPP Viewer MVP
+
+The responsive Next.js viewer is in `frontend/`. Product values are mapped from
+`data/generated/final_basyx_aas_environment.json`, allowing the public product
+experience to work without authentication or a live BaSyx query. Missing and
+explicitly unavailable values are omitted. The stock BaSyx UI remains available
+for infrastructure inspection.
+
+Run the complete stack:
+
+```bash
+docker compose up -d --build
+```
+
+Then open:
+
+- DPP viewer: http://localhost:3000
+- Stock BaSyx UI: http://localhost:3001
+- Secured gateway: https://localhost:8443
+
+For frontend-only development on a machine with Node.js 24:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The product data boundary is `frontend/lib/product/product-api.ts`; replace its
+generated-JSON reader with BaSyx discovery and repository calls later. The import
+boundary is `frontend/lib/import/import-api.ts`. Its live implementation sends
+`multipart/form-data` to `POST /api/admin/import` using the field name `file`.
+Admin authentication is isolated in `frontend/lib/auth/admin-auth.ts`. A
+`dpp-viewer` PKCE client is prepared in Keycloak, but the MVP uses an explicit
+mock admin session until server-side session handling and the import endpoint
+are connected.
 
 ## Generate the AAS
 
@@ -66,15 +102,19 @@ non-authoritative placeholders.
 
 ## Empty Values
 
-The generator treats the workbook's `Actual Value`, `Obligation`, and
-`Example Value` columns as follows:
+The generator treats the workbook's `Actual Value`, `Obligation`, and field
+structure as follows:
 
 - an empty optional element or branch is omitted;
-- an empty mandatory leaf uses a datatype-valid example when one exists;
-- every substituted example is marked with `DppValueStatus=Placeholder` and a
-  `DppValueStatusNote` qualifier;
-- an empty mandatory leaf without a safe example is omitted and reported with
-  its worksheet, table, and row number.
+- every populated workbook leaf is emitted, including workbook fields for which
+  an IDTA template only provides an `Arbitrary*` prototype;
+- custom field names are converted to valid AAS `idShort` values while their
+  exact workbook labels are retained as `displayName`;
+- an empty mandatory leaf receives an unmistakable
+  `DUMMY — MANDATORY VALUE MISSING` value and `DppValueStatus=Dummy` qualifier;
+- mandatory leaves inside inactive optional branches are collected in an
+  `UnresolvedMandatoryWorkbookValues` collection rather than silently omitted;
+- example-column values are never presented as actual product data.
 
 Workbook tables and repeated sections are retained as separate records during
 generation. In particular, repeated handover documents are emitted as distinct
@@ -106,11 +146,12 @@ Endpoints:
 - AAS Registry through gateway: https://localhost:8443/registry/aas
 - Submodel Registry through gateway:
   https://localhost:8443/registry/submodels
-- AAS Web UI: http://localhost:3000
+- Public DPP viewer: http://localhost:3000
+- AAS Web UI: http://localhost:3001
 
 The gateway generates a local TLS certificate in `security/certs/`. Open
 `https://localhost:8443/gateway/health` once and trust the local certificate.
-Then open the web UI. It redirects to Keycloak at
+Then open the AAS Web UI on port 3001. It redirects to Keycloak at
 `https://localhost:8443/auth/realms/basyx/protocol/openid-connect/auth` and
 returns to the UI after login.
 
@@ -139,6 +180,66 @@ behind HTTPS with a real hostname and certificate in a deployed environment.
 The BaSyx repositories and registries are not published directly to the host,
 so the gateway cannot be bypassed. All programmatic API access uses the same
 `AASClient` and HTTPS gateway.
+
+## Public distributed AAS read
+
+The FIBROTOR ER.15 shell ID is:
+
+```text
+https://www.fibrort.com/downloads?product=25/aas
+```
+
+An exact shell lookup and its exact Registry descriptor lookup are public and
+read-only. Collection reads, submodels, uploads, and every write operation stay
+behind the existing OAuth gateway. For local use, set these values in `.env`:
+
+```dotenv
+PUBLIC_GATEWAY_URL=https://localhost:8443
+PUBLIC_AAS_BASE_URL=https://localhost:8443
+```
+
+Recreate the AAS Environment and gateway so newly registered descriptors use
+the public endpoint, then upload the generated package if the repository is
+empty:
+
+```bash
+docker compose up -d --build --force-recreate aas-environment security-gateway
+OIDC_ACCESS_TOKEN=... .venv/bin/python generate_aas.py --upload --ca-certificate security/certs/gateway.crt
+```
+
+Test local discovery and retrieval through the Registry (the second command
+also saves the returned shell):
+
+```bash
+python scripts/test_distributed_aas.py https://localhost:8443/registry/aas/shell-descriptors 'https://www.fibrort.com/downloads?product=25/aas' --insecure
+python scripts/test_distributed_aas.py https://localhost:8443/registry/aas/shell-descriptors 'https://www.fibrort.com/downloads?product=25/aas' --insecure --output /tmp/fibrotor-er15-shell.json
+```
+
+For deployment, set `PUBLIC_AAS_BASE_URL=https://aas.fredcharbonnier.com`,
+recreate `aas-environment`, and route both `/api/shells/` and the public exact
+descriptor path `/registry/aas/shell-descriptors/` to the security gateway on
+`127.0.0.1:8443`. Preserve the path and query string. The gateway itself limits
+anonymous access to GET, HEAD, and OPTIONS on exact instance URLs.
+
+For example, the relevant Nginx locations are:
+
+```nginx
+location /api/shells/ {
+    proxy_pass https://127.0.0.1:8443;
+    proxy_ssl_verify off; # only when the gateway uses its local self-signed cert
+}
+
+location /registry/aas/shell-descriptors/ {
+    proxy_pass https://127.0.0.1:8443;
+    proxy_ssl_verify off; # remove when the upstream certificate is trusted
+}
+```
+
+Remote test:
+
+```bash
+python scripts/test_distributed_aas.py https://aas.fredcharbonnier.com/registry/aas/shell-descriptors 'https://www.fibrort.com/downloads?product=25/aas'
+```
 
 For production, use a CA-issued certificate, restrict CORS and Keycloak redirect
 origins, store the Keycloak bootstrap secret outside Compose, and manage users

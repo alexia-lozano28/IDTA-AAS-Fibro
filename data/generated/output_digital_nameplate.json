@@ -246,10 +246,109 @@
               "type": "SMT/Cardinality",
               "valueType": "xs:string",
               "value": "One"
+            },
+            {
+              "type": "WorkbookActualValue",
+              "valueType": "xs:string",
+              "value": "Address information entered in rows 31–34."
+            },
+            {
+              "type": "WorkbookSourceRow",
+              "valueType": "xs:integer",
+              "value": "9"
             }
           ],
           "modelType": "SubmodelElementCollection",
-          "value": []
+          "value": [
+            {
+              "idShort": "Street",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Street"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Digital Nameplate, table AddressInformation, row 31."
+                }
+              ],
+              "modelType": "MultiLanguageProperty",
+              "value": [
+                {
+                  "language": "en",
+                  "text": "Weidachstraße 41-43@de"
+                }
+              ]
+            },
+            {
+              "idShort": "Zipcode",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Zipcode"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Digital Nameplate, table AddressInformation, row 32."
+                }
+              ],
+              "modelType": "MultiLanguageProperty",
+              "value": [
+                {
+                  "language": "en",
+                  "text": "74189@de"
+                }
+              ]
+            },
+            {
+              "idShort": "CityTown",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "CityTown"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Digital Nameplate, table AddressInformation, row 33."
+                }
+              ],
+              "modelType": "MultiLanguageProperty",
+              "value": [
+                {
+                  "language": "en",
+                  "text": "Weinsberg@de"
+                }
+              ]
+            },
+            {
+              "idShort": "NationalCode",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "NationalCode"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Digital Nameplate, table AddressInformation, row 34."
+                }
+              ],
+              "modelType": "MultiLanguageProperty",
+              "value": [
+                {
+                  "language": "en",
+                  "text": "DE@de"
+                }
+              ]
+            }
+          ]
         },
         {
           "idShort": "OrderCodeOfManufacturer",
@@ -675,6 +774,211 @@
           "valueType": "xs:string",
           "modelType": "Property",
           "value": "weinsberg"
+        },
+        {
+          "idShort": "Markings",
+          "description": [
+            {
+              "language": "en",
+              "text": "Note: CE marking is declared as mandatory according to EU Blue Guide"
+            }
+          ],
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "0112/2///61360_7#AAS006#001"
+              }
+            ]
+          },
+          "supplementalSemanticIds": [
+            {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-ABI563#003/0173-1#01-AHF849#003"
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              },
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToOne"
+            }
+          ],
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Note: CE marking is declared as mandatory according to the Blue Guide of the EU-Commission"
+                }
+              ],
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "0112/2///61360_7#AAS009#001"
+                  }
+                ]
+              },
+              "supplementalSemanticIds": [
+                {
+                  "type": "ExternalReference",
+                  "keys": [
+                    {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-ABI564#003/0173-1#01-AHF850#003"
+                    }
+                  ]
+                }
+              ],
+              "qualifiers": [
+                {
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  },
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "OneToMany"
+                },
+                {
+                  "type": "WorkbookActualValue",
+                  "valueType": "xs:string",
+                  "value": "No CE mark required as we are component mfg. And not complete system provider"
+                },
+                {
+                  "type": "WorkbookSourceRow",
+                  "valueType": "xs:integer",
+                  "value": "40"
+                }
+              ],
+              "value": [
+                {
+                  "idShort": "MarkingName",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "0112/2///61987#ABA231#009"
+                      }
+                    ]
+                  },
+                  "supplementalSemanticIds": [
+                    {
+                      "type": "ExternalReference",
+                      "keys": [
+                        {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-ABI190#003"
+                        }
+                      ]
+                    }
+                  ],
+                  "qualifiers": [
+                    {
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      },
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One"
+                    }
+                  ],
+                  "valueType": "xs:string",
+                  "modelType": "Property",
+                  "value": "No CE mark required as we are component mfg. And not complete system provider"
+                },
+                {
+                  "idShort": "MarkingFile",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "MarkingFile"
+                    }
+                  ],
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "Workbook field from worksheet Digital Nameplate, table Markings, row 45."
+                    }
+                  ],
+                  "modelType": "Property",
+                  "valueType": "xs:string",
+                  "value": "No CE mark required as we are component mfg. And not complete system provider"
+                }
+              ],
+              "modelType": "SubmodelElementCollection"
+            }
+          ],
+          "modelType": "SubmodelElementList"
+        },
+        {
+          "idShort": "UnmappedWorkbookValues",
+          "modelType": "SubmodelElementCollection",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Populated workbook values without a template path"
+            }
+          ],
+          "description": [
+            {
+              "language": "en",
+              "text": "Values preserved from populated workbook rows that could not be placed unambiguously in the IDTA template."
+            }
+          ],
+          "value": [
+            {
+              "idShort": "GuidelineForConformityDeclaration_WorkbookRow62",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "GuidelineForConformityDeclaration"
+                }
+              ],
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Workbook field from worksheet Digital Nameplate, table GuidelineSpecificProperties, row 62."
+                }
+              ],
+              "modelType": "Property",
+              "valueType": "xs:string",
+              "value": "XX"
+            }
+          ]
         }
       ],
       "modelType": "Submodel"
