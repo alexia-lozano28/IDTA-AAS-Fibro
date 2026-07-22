@@ -96,6 +96,7 @@ services:
       KC_HTTP_RELATIVE_PATH: /auth
       KC_PROXY_HEADERS: xforwarded
       KC_HOSTNAME: ${PUBLIC_GATEWAY_URL:-https://localhost:8443}/auth
+      AAS_READ_CLIENT_SECRET: ${AAS_READ_CLIENT_SECRET:-change-me-read-client-secret}
     volumes:
       - ./security/keycloak/realm-basyx.json:/opt/keycloak/data/import/realm-basyx.json:ro
 

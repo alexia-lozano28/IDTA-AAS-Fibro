@@ -1,6 +1,11 @@
 import unittest
 
-from scripts.test_distributed_aas import encode_identifier, shell_endpoint
+from scripts.test_distributed_aas import (
+    client_credentials_token,
+    encode_identifier,
+    shell_endpoint,
+)
+from unittest.mock import MagicMock, patch
 
 
 class DistributedAasTestScriptTests(unittest.TestCase):
@@ -29,6 +34,27 @@ class DistributedAasTestScriptTests(unittest.TestCase):
     def test_rejects_a_descriptor_without_an_endpoint(self) -> None:
         with self.assertRaises(ValueError):
             shell_endpoint({"endpoints": []})
+
+    @patch("scripts.test_distributed_aas.urlopen")
+    def test_requests_a_client_credentials_token(self, urlopen: MagicMock) -> None:
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.__exit__.return_value = False
+        response.read.return_value = b'{"access_token":"machine-token"}'
+        urlopen.return_value = response
+
+        self.assertEqual(
+            "machine-token",
+            client_credentials_token(
+                "https://issuer.example/token",
+                "aas-read-client",
+                "secret",
+                insecure=False,
+            ),
+        )
+        request = urlopen.call_args.args[0]
+        self.assertIn(b"grant_type=client_credentials", request.data)
+        self.assertIn(b"client_id=aas-read-client", request.data)
 
 
 if __name__ == "__main__":

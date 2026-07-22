@@ -16,6 +16,32 @@
       "protocol": "openid-connect"
     },
     {
+      "clientId": "aas-read-client",
+      "name": "AAS read-only machine client",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${AAS_READ_CLIENT_SECRET}",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "authorizationServicesEnabled": false,
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "basyx-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "basyx-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    },
+    {
       "clientId": "basyx-web-ui",
       "name": "BaSyx Web UI",
       "enabled": true,
@@ -71,6 +97,12 @@
     }
   ],
   "users": [
+    {
+      "username": "service-account-aas-read-client",
+      "enabled": true,
+      "serviceAccountClientId": "aas-read-client",
+      "realmRoles": ["client"]
+    },
     {
       "username": "admin",
       "firstName": "Local",

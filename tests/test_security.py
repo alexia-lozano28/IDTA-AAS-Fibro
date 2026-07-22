@@ -1,3 +1,4 @@
+import json
 import unittest
 from pathlib import Path
 
@@ -77,24 +78,40 @@ class GatewayRoutingTests(unittest.TestCase):
             ),
         )
         self.assertEqual(
+            "http://environment:8081/submodels/encoded/submodel-elements/Nameplate",
+            self.config.upstream_url(
+                "/api/submodels/encoded/submodel-elements/Nameplate"
+            ),
+        )
+        self.assertEqual(
+            "http://environment:8081/concept-descriptions/encoded",
+            self.config.upstream_url("/api/concept-descriptions/encoded"),
+        )
+        self.assertEqual(
             "http://keycloak:8080/auth/realms/basyx/protocol/openid-connect/auth",
             self.config.upstream_url(
                 "/auth/realms/basyx/protocol/openid-connect/auth"
             ),
         )
 
-    def test_only_instance_level_reads_are_public(self) -> None:
+    def test_only_curated_shell_instance_reads_are_public(self) -> None:
         shell = "/api/shells/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXM"
         descriptor = "/registry/aas/shell-descriptors/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXM"
         for method in ("GET", "HEAD", "OPTIONS"):
             self.assertTrue(is_public_read_request(method, shell))
-            self.assertTrue(is_public_read_request(method, descriptor))
+            self.assertFalse(is_public_read_request(method, descriptor))
         for method in ("POST", "PUT", "PATCH", "DELETE"):
             self.assertFalse(is_public_read_request(method, shell))
         self.assertFalse(is_public_read_request("GET", "/api/shells"))
         self.assertFalse(is_public_read_request("GET", shell + "/submodels"))
         self.assertFalse(is_public_read_request("GET", "/api/shells/%2Fsubmodels"))
         self.assertFalse(is_public_read_request("GET", "/api/shells/not.base64url"))
+        self.assertFalse(is_public_read_request("GET", "/shells/encoded"))
+        self.assertFalse(is_public_read_request("GET", "/submodels/encoded"))
+        self.assertFalse(is_public_read_request("GET", "/api/submodels/encoded"))
+        self.assertFalse(
+            is_public_read_request("GET", "/api/concept-descriptions/encoded")
+        )
         self.assertEqual(
             "http://aas-registry:8080/shell-descriptors",
             self.config.upstream_url("/registry/aas/shell-descriptors"),
@@ -123,6 +140,30 @@ class DeploymentConfigurationTests(unittest.TestCase):
             "BASYX_EXTERNAL_URL: ${PUBLIC_AAS_BASE_URL:-https://localhost:8443}/api",
             compose,
         )
+
+    def test_machine_client_is_confidential_and_read_only(self) -> None:
+        project_root = Path(__file__).resolve().parents[1]
+        realm = json.loads(
+            (project_root / "security/keycloak/realm-basyx.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        machine_client = next(
+            client
+            for client in realm["clients"]
+            if client["clientId"] == "aas-read-client"
+        )
+        self.assertFalse(machine_client["publicClient"])
+        self.assertTrue(machine_client["serviceAccountsEnabled"])
+        self.assertFalse(machine_client["standardFlowEnabled"])
+        self.assertEqual("${AAS_READ_CLIENT_SECRET}", machine_client["secret"])
+
+        service_account = next(
+            user
+            for user in realm["users"]
+            if user.get("serviceAccountClientId") == "aas-read-client"
+        )
+        self.assertEqual(["client"], service_account["realmRoles"])
 
 
 if __name__ == "__main__":

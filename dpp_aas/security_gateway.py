@@ -123,20 +123,25 @@ class GatewayConfig:
             if request_path == prefix or request_path.startswith(prefix + "/"):
                 suffix = request_path[len(prefix) :] or "/"
                 return upstream.rstrip("/") + suffix
-        if parsed.path.startswith("/api/shells/"):
+        advertised_repository_prefixes = (
+            "/api/shells",
+            "/api/submodels",
+            "/api/concept-descriptions",
+        )
+        if any(
+            parsed.path == prefix or parsed.path.startswith(prefix + "/")
+            for prefix in advertised_repository_prefixes
+        ):
             return self.environment_upstream.rstrip("/") + request_path[4:]
         return self.environment_upstream.rstrip("/") + request_path
 
 
 def is_public_read_request(method: str, request_path: str) -> bool:
-    """Return true only for the two instance-level distributed-read routes."""
+    """Return true only for the curated public shell-instance route."""
     if method.upper() not in READ_METHODS:
         return False
     path = urlsplit(request_path).path
-    public_prefixes = (
-        "/api/shells/",
-        "/registry/aas/shell-descriptors/",
-    )
+    public_prefixes = ("/api/shells/",)
     for prefix in public_prefixes:
         identifier = path[len(prefix) :] if path.startswith(prefix) else ""
         if identifier and all(character in BASE64URL_CHARACTERS for character in identifier):
