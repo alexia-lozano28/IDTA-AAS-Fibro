@@ -128,6 +128,16 @@ services:
       retries: 10
       start_period: 10s
 
+  import-api:
+    build:
+      context: .
+      dockerfile: import-api/Dockerfile
+    container_name: aas-import-api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - aas-environment
+
   web-ui:
     image: eclipsebasyx/aas-gui:v2-260707
     container_name: fibro-aas-web-ui

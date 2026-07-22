@@ -107,11 +107,13 @@ def run_pipeline(
         write_aasx(environment_path, resolved_aasx_path, asset_dir)
 
     upload_status = None
+
     if upload_url:
         if resolved_aasx_path is None:
             raise ValueError("AASX generation must be enabled when uploading")
         if not upload_access_token:
             raise ValueError("An admin OIDC access token is required when uploading")
+
         upload_status = upload_aasx(
             resolved_aasx_path,
             upload_url,
