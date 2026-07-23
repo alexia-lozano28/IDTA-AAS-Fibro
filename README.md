@@ -206,10 +206,10 @@ Local demonstration accounts imported with the realm are:
 These credentials are intentionally unsafe demo defaults. Change or remove
 them before sharing a deployment.
 
-The custom frontend has a separate public PKCE client named `dpp-viewer`, but
-its Admin Upload session and `POST /api/admin/import` endpoint are still frontend
-integration boundaries, not completed production authentication/import flows.
-Use the stock BaSyx UI for authenticated AASX upload today.
+The custom frontend has a separate public PKCE client named `dpp-viewer`; its
+standalone Admin Upload page still uses a mock session. The working XLSX import
+flow is currently integrated into the stock BaSyx UI and reuses that UI's real
+`basyx-web-ui` access token.
 
 ### Read-only machine client
 
@@ -428,9 +428,18 @@ python3 scripts/test_distributed_aas.py \
 1. Open `https://localhost:8443/gateway/health` and trust the local certificate.
 2. Open http://localhost:3001.
 3. Sign in through Keycloak as `admin` for uploads/edits or `client` for reads.
-4. Upload an `.aasx` file using the BaSyx upload control.
-5. Select the shell. The UI resolves AAS and Submodel Registry descriptors and
+4. Open the AAS navigation dropdown. After **AAS SM Visualizations**, select
+   **Upload XLSX as AAS**. This item is rendered only for an `admin` token.
+5. Choose a completed `.xlsx` product workbook and select
+   **Generate and upload AAS**. The authenticated request runs the complete
+   workbook-to-JSON-to-AASX pipeline and posts the AASX to BaSyx.
+6. Review any generation warnings, then close and refresh the AAS list.
+7. Select the shell. The UI resolves AAS and Submodel Registry descriptors and
    follows the advertised `/api/shells` and authenticated `/api/submodels` URLs.
+
+The UI visibility check is only a convenience. `POST /api/admin/import` is
+protected by the gateway: no token receives HTTP 401 and a read-only token
+receives HTTP 403 before the import service is called.
 
 If shells load but every Submodel reports “Submodel not found,” inspect gateway
 logs for `/api/submodels/...` responses. These advertised aliases must be
@@ -487,6 +496,27 @@ optional fields are omitted. Empty mandatory leaves receive an explicit
 Template example values are never presented as real product data.
 
 ## Upload an AASX
+
+### Convert and upload an XLSX through the BaSyx UI
+
+The private `import-api` container accepts a multipart request routed through
+the security gateway:
+
+```text
+POST /api/admin/import
+Authorization: Bearer <admin-access-token>
+Content-Type: multipart/form-data
+file: <workbook.xlsx>
+```
+
+It accepts `.xlsx` only, defaults to a 20 MiB limit, uses a unique temporary
+workspace, calls the repository's `run_pipeline()`, uploads the generated AASX
+through the authenticated gateway, and deletes temporary artifacts when the
+request finishes. It is not published on a host port.
+
+Successful responses include `aasId`, `productUri`, `uploadStatus`, `warnings`
+and `missingMandatory`. Workbook validation errors return HTTP 422. The request
+is synchronous and uses `GATEWAY_UPSTREAM_TIMEOUT` (180 seconds by default).
 
 ### Recommended interactive upload
 
@@ -551,10 +581,11 @@ npm install
 npm run dev
 ```
 
-The future import boundary is `frontend/lib/import/import-api.ts`. Its live
-request shape is `multipart/form-data`, `POST /api/admin/import`, field name
-`file`. That application endpoint is not implemented yet; it is distinct from
-the current BaSyx `POST /upload` endpoint.
+The standalone custom frontend page still uses its mock adapter. Its live
+request boundary matches the implemented service—`multipart/form-data`,
+`POST /api/admin/import`, field name `file`—but its independent Keycloak session
+must be completed before enabling that page. The stock BaSyx UI integration is
+the supported authenticated entry point for now.
 
 The visual palette is defined in `frontend/app/theme.css`, including the FIBRO
 orange brand variables.

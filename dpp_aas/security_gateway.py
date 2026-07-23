@@ -109,12 +109,15 @@ class GatewayConfig:
     aas_registry_upstream: str
     submodel_registry_upstream: str
     keycloak_upstream: str
+    import_upstream: str
     timeout: float = 60
 
     def upstream_url(self, request_path: str) -> str:
         parsed = urlsplit(request_path)
         if parsed.path == "/auth" or parsed.path.startswith("/auth/"):
             return self.keycloak_upstream.rstrip("/") + request_path
+        if parsed.path == "/api/admin/import":
+            return self.import_upstream.rstrip("/") + request_path
         routes = (
             ("/registry/aas", self.aas_registry_upstream),
             ("/registry/submodels", self.submodel_registry_upstream),
@@ -356,6 +359,8 @@ def main(argv: list[str] | None = None) -> int:
             "SUBMODEL_REGISTRY_UPSTREAM", "http://submodel-registry:8080"
         ),
         keycloak_upstream=os.getenv("KEYCLOAK_UPSTREAM", "http://keycloak:8080"),
+        import_upstream=os.getenv("IMPORT_UPSTREAM", "http://import-api:8000"),
+        timeout=float(os.getenv("GATEWAY_UPSTREAM_TIMEOUT", "180")),
     )
     server = create_server(args.host, args.port, config, args.cert, args.key)
     print(f"Security gateway listening on https://{args.host}:{args.port}", flush=True)

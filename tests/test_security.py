@@ -64,6 +64,7 @@ class GatewayRoutingTests(unittest.TestCase):
             aas_registry_upstream="http://aas-registry:8080",
             submodel_registry_upstream="http://sm-registry:8080",
             keycloak_upstream="http://keycloak:8080",
+            import_upstream="http://import-api:8000",
         )
 
     def test_routes_environment_and_registry_paths(self) -> None:
@@ -92,6 +93,10 @@ class GatewayRoutingTests(unittest.TestCase):
             self.config.upstream_url(
                 "/auth/realms/basyx/protocol/openid-connect/auth"
             ),
+        )
+        self.assertEqual(
+            "http://import-api:8000/api/admin/import",
+            self.config.upstream_url("/api/admin/import"),
         )
 
     def test_only_curated_shell_instance_reads_are_public(self) -> None:
